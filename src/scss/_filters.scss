@@ -1,0 +1,43 @@
+
+	  #filterButtons {
+	    text-align: center;
+	    font-size: 0.8em;
+	  }
+	  #filter input:focus {
+	    width: 100%;
+	  }
+	  #filter input {
+	    width: 100% !important;
+	    font-family: "Benton Sans", Helvetica, Arial, sans-serif !important;
+	  }
+	  #resultBar {
+	      font-size: 1.5em;
+	      color: #000;
+	      font-weight: bold;
+	      font-family: "Benton Sans", Helvetica, Arial, sans-serif;
+	      margin-top:25px;
+	      margin-bottom:25px;
+	  }
+	 
+	#filter {
+	  text-align: center;
+	}
+
+	.filters {
+	  display: inline-block;
+	}
+	#filterBox {
+	  width: 100%;
+	}
+	.filterSection {
+	  display:none;
+	}
+	/* The container must be positioned relative: */
+	.custom-select {
+	  font-family: Arial;
+	  width:19.3%;
+	  display:inline-block;
+	}
+	#resultsBlock {
+	  height:20px;
+	}
