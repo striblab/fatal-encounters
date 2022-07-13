@@ -138,7 +138,6 @@
       document.getElementsByClassName('viz')[2].style.display='none';
       document.getElementsByClassName('viz')[3].style.display='none';
       document.getElementsByClassName('viz')[id].style.display='block';
-      jq("#map-alt").width(800)
   }
 
   const style = 'margin-top:20px;';
@@ -160,29 +159,68 @@
 
 
    function rFilter(term) {
-
+            jq('.card').hide();
+            var txt = term;
+            jq('.race').each(function() {
+                  if (jq(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+                          jq(this).parent().parent().parent().show();
+                  }
+            });
+            var count = jq('.card:visible').length;
+            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
    }
 
    function gFilter(term) {
- 
+            jq('.card').hide();
+            var txt = term;
+            jq('.gender').each(function() {
+                  if (jq(this).text().toUpperCase() == txt.toUpperCase()) {
+                          jq(this).parent().parent().parent().show();
+                  }
+            });
+            var count = jq('.card:visible').length;
+            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)"); 
    }
 
    function cFilter(term) {
-
+            jq('.card').hide();
+            var txt = term;
+            jq('.card').each(function() {
+                  if (jq(this).text().toUpperCase() .indexOf(txt.toUpperCase()) != -1) {
+                          jq(this).show();
+                  }
+            });
+            var count = jq('.card:visible').length;
+            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
    }
 
    function lFilter(term) {
-  
+            jq('.card').hide();
+            var txt = term;
+            jq('.region').each(function() {
+                  if (jq(this).text().toUpperCase() == txt.toUpperCase()) {
+                          jq(this).parent().parent().parent().show();
+                  }
+            });
+            var count = jq('.card:visible').length;
+            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
    }
 
    function wFilter(term) {
-  
+            jq('.card').hide();
+            var txt = term;
+            jq('.weapon').each(function() {
+                  if (jq(this).text().toUpperCase() == txt.toUpperCase()) {
+                          jq(this).parent().parent().parent().show();
+                  }
+            });
+            var count = jq('.card:visible').length;
+            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
    }
 
 //https://svelte.dev/repl/e67e1a90ef3945ec988bf39f6a10b6b3?version=3.32.3
 
 onMount(() => {
-
 
 
     jq('#filter_box').keyup(function(i) {   
@@ -200,7 +238,7 @@ onMount(() => {
 
 <div id="vizbuttons">
       <button class="vizToggle" on:click={() => vizToggle(0)}>Trend</button>
-      <button class="vizToggle" on:click={() => vizToggle(1)}>Statistics</button>
+      <button class="vizToggle" on:click={() => vizToggle(1)}>Filters</button>
       <button class="vizToggle" on:click={() => vizToggle(2)}>Map</button>
 </div>
 <div id="vizbox">
@@ -222,90 +260,89 @@ onMount(() => {
             {/await}
             </div>
             <div id="stats" class="viz">
-                  <div class="minichart">
+                  <div class="minichart" on:click={() => rFilter('white')}>
                         <div class="miniTitle">White: <span class="countstat" id="wcount"></span></div>
                         <div class="statlabel"><span class="pctstat" id="wstat"></span> of police-involved deaths</div>
                         <div class="mnlabel">79% of Minnesota residents</div>
                   </div>
-                  <div class="minichart">
+                  <div class="minichart" on:click={() => rFilter('black')}>
                         <div class="miniTitle">Black: <span class="countstat"  id="bcount"></span></div>
                         <div class="statlabel"><span class="pctstat" id="bstat"></span> of police-involved deaths</div>
                         <div class="mnlabel">7% of Minnesota residents</div>
                   </div>
-                  <div class="minichart">
+                  <div class="minichart" on:click={() => rFilter('hispanic')}>
                         <div class="miniTitle">Hispanic: <span class="countstat"  id="hcount"></span></div>
                         <div class="statlabel"><span class="pctstat" id="hstat"></span> of police-involved deaths</div>
                         <div class="mnlabel">6% of Minnesota residents</div>
                   </div>
-                  <div class="minichart">
+                  <div class="minichart" on:click={() => rFilter('american indian')}>
                         <div class="miniTitle">Native American: <span class="countstat"  id="ncount"></span></div>
                         <div class="statlabel"><span class="pctstat" id="nstat"></span> of police-involved deaths</div>
                         <div class="mnlabel">1% of Minnesota residents</div>
                   </div>
-                  <div class="minichart">
+                  <div class="minichart" on:click={() => rFilter('asian')}>
                         <div class="miniTitle">Asian: <span class="countstat" id="acount"></span></div>
                         <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
                         <div class="mnlabel">5% of Minnesota residents</div>
                   </div>
-                  <div class="minichart">
-                        <div class="miniTitle">Others: <span class="countstat" id="woount"></span></div>
+                  <div class="minichart" on:click={() => rFilter('multi')}>
+                        <div class="miniTitle">Others: <span class="countstat" id="other"></span></div>
                         <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
                         <div class="mnlabel">3% of Minnesota residents</div>
+                  </div>
+
+
+                  <div class="minichart" on:click={() => gFilter('male')}>
+                        <div class="miniTitle">Male: <span class="countstat" id="male"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
+                  </div>
+                  <div class="minichart" on:click={() => gFilter('female')}>
+                        <div class="miniTitle">Female: <span class="countstat" id="female"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
+                  </div>
+
+
+                  <div class="minichart" on:click={() => lFilter('minneapolis')}>
+                        <div class="miniTitle">Minneapolis: <span class="countstat" id="mcount"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
+                        <div class="mnlabel">5% of Minnesota residents</div>
+                  </div>
+                  <div class="minichart" on:click={() => lFilter('st. paul')}>
+                        <div class="miniTitle">St. Paul: <span class="countstat" id="spcount"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
+                        <div class="mnlabel">3% of Minnesota residents</div>
+                  </div>
+                  <div class="minichart" on:click={() => lFilter('metro')}>
+                        <div class="miniTitle">Metro suburbs: <span class="countstat" id="scount"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
+                        <div class="mnlabel">5% of Minnesota residents</div>
+                  </div>
+                  <div class="minichart" on:click={() => lFilter('outstate')}>
+                        <div class="miniTitle">Greater Minnesota: <span class="countstat" id="mncount"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
+                        <div class="mnlabel">3% of Minnesota residents</div>
+                  </div>
+
+                  <div class="minichart" on:click={() => wFilter('gun')}>
+                        <div class="miniTitle">Firearm: <span class="countstat" id="fcount"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
+                  </div>
+                  <div class="minichart" on:click={() => wFilter('bladed weapon')}>
+                        <div class="miniTitle">Bladed weapon: <span class="countstat" id="bcount"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
+                  </div>
+                  <div class="minichart" on:click={() => wFilter('other')}>
+                        <div class="miniTitle">Other weapon: <span class="countstat" id="acount"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
+                  </div>
+                  <div class="minichart" on:click={() => wFilter('unarmed')}>
+                        <div class="miniTitle">Unarmed: <span class="countstat" id="ucount"></span></div>
+                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
                   </div>
             </div>
             <div id="map" class="viz"><MapMain/></div>
             <div id="mchart" class="viz"></div>
       </div>
-
-<div id="filters">
-      <div class="custom-select" id="rfilter" index="0">
-            <select>
-            <option class="select" value="99" on:click={() => rFilter('')}>All races</option>
-            <option class="select" value="0" on:click={() => rFilter('WHITE')}>White</option>
-            <option class="select" value="1" on:click={() => rFilter('BLACK')}>Black</option>
-            <option class="select" value="2" on:click={() => rFilter('ASIAN')}>Asian</option>
-            <option class="select" value="3" on:click={() => rFilter('AMERICAN INDIAN')}>Native American</option>
-            <option class="select" value="4" on:click={() => rFilter('HISPANIC')}>Hispanic</option>
-            <option class="select" value="5" on:click={() => rFilter('MULTI')}>Multiracial</option>
-            </select>
-      </div>
-      <div class="custom-select" id="gfilter" index="1">
-            <select>
-            <option class="select" value="99" on:click={() => gFilter('')}>All genders</option>
-            <option class="select" value="0" on:click={() => gFilter('MALE')}>Male</option>
-            <option class="select" value="1" on:click={() => gFilter('FEMALE')}>Female</option>
-            </select>
-      </div>
-      <div class="custom-select" id="mfilter" index="2">
-            <select>
-            <option class="select" value="99" on:click={() => cFilter('')}>All causes</option>
-            <option class="select" value="0" on:click={() => cFilter('HOMICIDe')}>Homicide</option>
-            <option class="select" value="1" on:click={() => cFilter('SUICIDE')}>Suicide</option>
-            <option class="select" value="2" on:click={() => cFilter('ACIDENT')}>Accidental death</option>
-            <option class="select" value="3" on:click={() => cFilter('NATURAL')}>Natural causes</option>
-            <option class="select" value="4" on:click={() => cFilter('NOT YET DETERMINED')}>NA</option>
-            </select>
-      </div>
-      <div class="custom-select" id="lfilter" index="3">
-            <select>
-            <option class="select" value="99" on:click={() => lFilter('')}>All locations</option>
-            <option class="select" value="0" on:click={() => lFilter('Minneapolis')}>Minneapolis</option>
-            <option class="select" value="1" on:click={() => lFilter('St. Paul')}>St. Paul</option>
-            <option class="select" value="2" on:click={() => lFilter('Metro')}>Metro auburbs</option>
-            <option class="select" value="3" on:click={() => lFilter('Outstate')}>Greater Minnesota</option>
-            </select>
-      </div>
-      <div class="custom-select" id="wfilter" index="4">
-            <select>
-            <option class="select" value="99" on:click={() => wFilter('')}>All weapons</option>
-            <option class="select" value="0" on:click={() => wFilter('GUN')}>Gun</option>
-            <option class="select" value="1" on:click={() => wFilter('KNIFE')}>Bladed</option>
-            <option class="select" value="2" on:click={() => wFilter('UNKNOWN')}>Other</option>
-            <option class="select" value="3" on:click={() => wFilter('UNARMED')}>Unarmed</option>
-            </select>
-      </div>
-</div>
-
 
 <Search bind:searchTerm on:input={search} />
 
@@ -326,6 +363,7 @@ onMount(() => {
       			<div class='name'>{d.FirstName} {d.LastName}</div>
       			<div class='vitals'><span class='race'>{d.Race}</span> <span class='gender'>{d.Gender}</span> {d.AgeYears}</div>
       			<div class='location'>{d.InjuryCity} <span class='region'>{d.Region}</span></div>
+                        <div>Weapon: {d.Weapon} (<span class="weapon">{d.WeaponCategory}</span>)</div>
       			<div>Agencies involved: {d.Agency}</div>
       		</div>
                   <div class="bottomSide {hidden[d.index]}">

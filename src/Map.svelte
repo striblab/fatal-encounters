@@ -2,28 +2,31 @@
 
 <script>
 import hennepin from './data/hennepin.json';
+import ramsey from './data/ramsey.json';
 import addresses from './data/addresses.json';
 import mpls from './data/minneapolis.json';
-import covenants from './data/covenants.json';
+// import covenants from './data/covenants.json';
 import { onMount } from 'svelte';
 import * as jq from 'jquery';
 import * as mapboxgl from 'mapbox-gl';
 
 let center = [-93.265015, 44.977753];
 let mcenter = [-93.265015, 44.977753];
-let zoom = 10.5;
+let zoom = 9.5;
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RhcnRyaWJ1bmUiLCJhIjoiY2sxYjRnNjdqMGtjOTNjcGY1cHJmZDBoMiJ9.St9lE8qlWR5jIjkPYd3Wqw';
+
+var map;
 
 function makeMap() {
 /********** MAKE MAP **********/
 
-const map = new mapboxgl.Map({
+map = new mapboxgl.Map({
   container: 'map_alt',
   style: 'mapbox://styles/startribune/ck1b7427307bv1dsaq4f8aa5h',
   center: center,
   zoom: zoom,
-  minZoom: 9.5,
+  minZoom: zoom,
   maxZoom: 16,
   maxBounds: [-97.25, 43.2, -89.53, 49.5],
   scrollZoom: false
@@ -130,6 +133,23 @@ map.on('load', function() {
             }
       }, "settlement-subdivision-label");
 
+      map.addSource('ramsey', {
+        type: 'geojson',
+        data: ramsey
+      });
+
+      map.addLayer({
+          'id': 'ramsey-layer',
+          'interactive': true,
+          'source': 'ramsey',
+          'layout': {},
+          'type': 'line',
+          'paint': {
+              'line-width': 0.7,
+              'line-color': '#333333'
+            }
+      }, "settlement-subdivision-label");
+
       map.addSource('mpls', {
         type: 'geojson',
         data: mpls
@@ -147,40 +167,24 @@ map.on('load', function() {
             }
       }, "settlement-subdivision-label");
 
-      map.addSource('covenants', {
-        type: 'geojson',
-        data: covenants
-      });
-
-      map.addLayer({
-          'id': 'covenants-layer',
-          'interactive': true,
-          'source': 'covenants',
-          'layout': {},
-          'type': 'fill',
-              'paint': {
-              'fill-antialias' : true,
-              'fill-opacity': 1,
-              'fill-color': "#aabdcb",
-              'fill-outline-color': "#aabdcb"
-        }
-      }, "settlement-subdivision-label");
-
 });
 
 
 jq(document).ready(function() {
+  jq('button').click(function() {
+      map.resize();
+  });
   if ((jq("#map").width() < 520)) {
       map.flyTo({
           center: mcenter,
-          zoom: 10
+          zoom: 9.5
       });
   }
   jq(window).resize(function() {
       if ((jq("#map").width() < 520)){
           map.flyTo({
               center: mcenter,
-              zoom: 10
+              zoom: 9.5
           });
       } else {
           map.flyTo({
@@ -191,7 +195,7 @@ jq(document).ready(function() {
   });
 });
 
-map.resize();
+
 }
 
     onMount(() => {

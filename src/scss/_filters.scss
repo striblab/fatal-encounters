@@ -32,7 +32,6 @@
 	.filterSection {
 	  display:none;
 	}
-	/* The container must be positioned relative: */
 	.custom-select {
 	  font-family: Arial;
 	  width:19.3%;
@@ -40,4 +39,12 @@
 	}
 	#resultsBlock {
 	  height:20px;
+	}
+	.minichart {
+		border-radius:5px;
+		border:1px solid black;
+		margin-bottom:12px !important;
+	}
+	.minichart:hover {
+		cursor:pointer;
 	}
