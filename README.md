@@ -8,7 +8,7 @@ This was initially developed for the project "A Cry For Help" but launched early
 
 The next version was specifically crafted to run within the "A Cry For Help" package in 2016 and meticulously designed with that project's visual language, needed functionality and storytelling focus in mind, placing an emphasis not just on racial disparities associated with police-involved killings, but upon mental health crises among those who died. This version was also developed before any vital technological infracture was allotted to metro, so many of its resources lived outside the Star Tribune's ecosystem, leaving it vulnerable to the digital entropy that eventually claimed it.
 
-Post-project, this was redeveloped into a stand-alone, ongoing record of police-involved killings in Minnesota as a piece of public service journalism. This grew in world without easily-accessible special templates, and remained trapped within an iframe-centric world.
+Post-project, this was redeveloped into a stand-alone, ongoing record of police-involved killings in Minnesota as a piece of public service journalism. We lacked easily-accessible special templates, and remained trapped within an iframe-centric world.
 
 As the Star Tribune's technological prowess evolved and newsroom development matured, it was necessary to keep this project running in response to changes in digital ecosystems. This involved patching the project and subjecting it to ongoing feature and design creep.
 
