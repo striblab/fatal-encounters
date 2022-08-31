@@ -4,11 +4,10 @@
 
 
 <div id="filter">
-      <input type="text" 
+      <input type="search" 
             id="filter_box" 
             placeholder="Search list of all deaths by name, year or keyword"
             autocomplete="off"
-            bind:value={searchTerm}
             on:input />
 </div> 
 

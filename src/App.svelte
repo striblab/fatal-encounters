@@ -11,20 +11,21 @@
 
     var sortedYears;
     var countsByYears;
-    var sortedRace;
-    var countsByRace;
     var datalength;
     var dataShootings;
 
+    //GENERATE SUMMARY DATA FOR CHARTS AND STATS
 	function buildChart(data) {
             dataShootings = data;
 
-            var padding = {
-                  top: 20,
-                  right: 40,
-                  bottom: 20,
-                  left: 40
-            };
+          var sortedRace;
+          var countsByRace;
+          var sortedGender;
+          var countsByGender;
+          var sortedLocation;
+          var countsByLocation;
+          var sortedWeapon;
+          var countsByWeapon;
 
             sortedYears = _.sortBy(_.uniq(_.map(dataShootings, d => parseInt(d.year, 10))));
             countsByYears = _.map(_.sortBy(_.groupBy(dataShootings, d => parseInt(d.year, 10)),(d, di) => di), 'length');
@@ -32,72 +33,60 @@
             sortedRace = _.sortBy(_.uniq(_.map(dataShootings, d => d.Race, 10)));
             countsByRace = _.map(_.sortBy(_.groupBy(dataShootings, d => d.Race),(d, di) => di), 'length');
 
+            sortedGender = _.sortBy(_.uniq(_.map(dataShootings, d => d.Gender, 10)));
+            countsByGender = _.map(_.sortBy(_.groupBy(dataShootings, d => d.Gender),(d, di) => di), 'length');
+
+            sortedLocation = _.sortBy(_.uniq(_.map(dataShootings, d => d.Region, 10)));
+            countsByLocation = _.map(_.sortBy(_.groupBy(dataShootings, d => d.Region),(d, di) => di), 'length');
+
+            sortedWeapon = _.sortBy(_.uniq(_.map(dataShootings, d => d.WeaponCategory, 10)));
+            countsByWeapon = _.map(_.sortBy(_.groupBy(dataShootings, d => d.WeaponCategory),(d, di) => di), 'length');
+
             datalength = dataShootings.length;
 
-            jq("#wcount").html(countsByRace[6]);
-            jq("#wstat").html(d3.format(".0%")(countsByRace[6] / datalength));
+            function miniCharts(target,labels,counts,mn,show) {
+                  var length = target.length;
+                  var sline = "";
 
-            jq("#bcount").html(countsByRace[2]);
-            jq("#bstat").html(d3.format(".0%")(countsByRace[2] / datalength));
+                  for (var i=0; i < length; i++){
+                        var pct = d3.format(".0%")(counts[i] / datalength);
+                        if (show) { sline =  '<div class="mnlabel">' + mn[i] + ' of Minnesota residents</div> \
+                        <div class="sline" style="width:' + mn[i] + ';"></div>' }
 
-            jq("#hcount").html(countsByRace[3]);
-            jq("#hstat").html(d3.format(".0%")(countsByRace[3] / datalength));
-
-            jq("#ncount").html(countsByRace[0]);
-            jq("#nstat").html(d3.format(".0%")(countsByRace[0] / datalength));
-
-            jq("#acount").html(countsByRace[1]);
-            jq("#astat").html(d3.format(".0%")(countsByRace[1] / datalength));
-
-            jq("#ocount").html(countsByRace[4]);
-            jq("#ostat").html(d3.format(".0%")(countsByRace[4] / datalength));
-
-            var chartCounts = c3.generate({
-                  bindto: '#mchart',
-                  padding: padding,
-                        data: {
-                              x: 'x',
-                              columns: [
-                                    ['x'].concat(sortedYears),
-                                    ['Incident'].concat(countsByYears)
-                              ],
-                              type: 'bar',
-                              labels: {
-                              format: {
-                                    Incident: d3.format(',.0f')
-                              }
-                              }
-                        },
-                        tooltip: { show: false },
-                        legend: { show: false },
-                        color: { pattern: ['#b75b60'] },
-                        axis: { rotated: true,
-                        y: {
-                              max: 20,
-                              min: 0,
-                              padding: {
-                                    bottom: 0,
-                                    top: 0
-                              },
-                              tick: {
-                                    count: 4,
-                                    values: [0, 10, 20, 30],
-                                    format: d3.format(',.0f')
-                              }
-                        },
-                        x: {
-                              tick: {
-                                    count: sortedYears.length,
-                                    values: sortedYears,
-                                    format: d3.format('.0f')
-                              }
-                        }
+                        jq('#'+target[i]).html('<div class="miniTitle">' + labels[i] + ' <span class="countstat">' + counts[i] + '</span></div> \
+                        <div class="statlabel"><span class="pctstat">' + pct + '</span> of police-involved deaths</div> \
+                        <div class="cline" style="width:' + pct + '"></div>' + sline);
                   }
-            });
+            }
+
+            var raceTargets = ["white", "black", "hispanic", "native", "asian", "other"];
+            var raceLabels = ["White", "Black", "Hispanic", "Native American", "Asian", "Other races"];
+            var raceCounts = [countsByRace[6], countsByRace[2], countsByRace[3], countsByRace[0], countsByRace[1], countsByRace[4]];
+            var raceMN = ["79%", "7%", "6%", "1%", "5%", "3%"];
+            miniCharts(raceTargets,raceLabels,raceCounts,raceMN,true);
+
+            var genderTargets = ["male", "female"];
+            var genderLabels = ["Male", "Female"];
+            var genderCounts = [countsByGender[1], countsByGender[0]];
+            var genderMN = ["50%", "50%"];
+            miniCharts(genderTargets,genderLabels,genderCounts,genderMN,false);
+
+            var locationTargets = ["minneapolis", "stpaul", "suburbs", "greater"];
+            var locationLabels = ["Minneapolis", "St. Paul", "Metro suburbs", "Greater Minnesota"];
+            var locationCounts = [countsByLocation[1], countsByLocation[3], countsByLocation[0], countsByWeapon[2]];
+            var locationMN = ["8%", "5%", "35%", "25%"];
+            miniCharts(locationTargets,locationLabels,locationCounts,locationMN,true);
+
+            var weaponTargets = ["firearm", "bladed", "weapons", "unarmed"];
+            var weaponLabels = ["Firearm", "Bladed weapon", "Other weapon", "Unarmed"];
+            var weaponCounts = [countsByWeapon[2], countsByWeapon[1], countsByWeapon[3], countsByWeapon[5]];
+            var weaponMN = ["0%", "0%", "0%", "0%"];
+            miniCharts(weaponTargets,weaponLabels,weaponCounts,weaponMN,false);
 
       }
 
 
+//FETCH DEATHS DATA
  async function getDeaths() {
     let response = await fetch("https://googlescript.startribune.com/?macro=AKfycbw_cqdXZADky_zHS3pi9aBL2S3-514vlxJkcnv5TJ1z9sxCqPY&id=1T-Du1geFfuspEYGF_U0531mLTJ0ehbA5YbaFCxgmkRA&sheet=mn_shootings");
     let deaths = await response.json();
@@ -132,6 +121,8 @@
 
   let active = {button1: false, button2: false, button3: false};
 
+
+  //TOGGLE VISUAL ANALYSIS VIEWS
   function vizToggle(id) {
       document.getElementsByClassName('viz')[0].style.display='none';
       document.getElementsByClassName('viz')[1].style.display='none';
@@ -142,20 +133,29 @@
 
   const style = 'margin-top:20px;';
 
-  let searchTerm = '';
+  //SEARCH AND FILTER FUNCTIONALITY
+
+  function found(count, term) {
+      jq('.results').html(term + ": " + count + " (" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
+  }
+
+  var timeout = null;
 
   function search(filterbox) {
-            jq(this).attr('placeholder', 'Search list of all deaths by name, year or keyword');
-            jq('.card').hide();
-            var txt = filterbox;
-            jq('.card').each(function() {
-                  if (jq(this).text().toUpperCase() .indexOf(txt.toUpperCase()) != -1) {
-                          jq(this).show();
-                  }
-            });
-            var count = jq('.card:visible').length;
-            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
+      clearTimeout(timeout);
+      timeout = setTimeout(function() {
+                  jq('.card').hide();
+                  var txt = filterbox;
+                  jq('.card').each(function() {
+                        if (jq(this).text().toUpperCase() .indexOf(txt.toUpperCase()) != -1) {
+                                jq(this).show();
+                        }
+                  });
+                  var count = jq('.card:visible').length;
+                  found(count, txt);
+      }, 500);
    }
+
 
 
    function rFilter(term) {
@@ -167,7 +167,7 @@
                   }
             });
             var count = jq('.card:visible').length;
-            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
+            found(count, txt);
    }
 
    function gFilter(term) {
@@ -179,7 +179,7 @@
                   }
             });
             var count = jq('.card:visible').length;
-            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)"); 
+            found(count, txt); 
    }
 
    function cFilter(term) {
@@ -191,7 +191,7 @@
                   }
             });
             var count = jq('.card:visible').length;
-            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
+            found(count, txt);
    }
 
    function lFilter(term) {
@@ -203,7 +203,7 @@
                   }
             });
             var count = jq('.card:visible').length;
-            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
+            found(count, txt);
    }
 
    function wFilter(term) {
@@ -215,15 +215,14 @@
                   }
             });
             var count = jq('.card:visible').length;
-            jq('.results').html(count + "(" + Math.round((count / Number(jq("#bigNum").text())) * 100) + "%)");
+            found(count, txt);
    }
 
 //https://svelte.dev/repl/e67e1a90ef3945ec988bf39f6a10b6b3?version=3.32.3
 
 onMount(() => {
 
-
-    jq('#filter_box').keyup(function(i) {   
+    jq('#filter_box').on("keyup search", function(i) {   
           var term = jq(this).val();   
             search(term);
       });
@@ -260,110 +259,51 @@ onMount(() => {
             {/await}
             </div>
             <div id="stats" class="viz">
-                  <div class="minichart" on:click={() => rFilter('white')}>
-                        <div class="miniTitle">White: <span class="countstat" id="wcount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="wstat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">79% of Minnesota residents</div>
-                  </div>
-                  <div class="minichart" on:click={() => rFilter('black')}>
-                        <div class="miniTitle">Black: <span class="countstat"  id="bcount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="bstat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">7% of Minnesota residents</div>
-                  </div>
-                  <div class="minichart" on:click={() => rFilter('hispanic')}>
-                        <div class="miniTitle">Hispanic: <span class="countstat"  id="hcount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="hstat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">6% of Minnesota residents</div>
-                  </div>
-                  <div class="minichart" on:click={() => rFilter('american indian')}>
-                        <div class="miniTitle">Native American: <span class="countstat"  id="ncount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="nstat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">1% of Minnesota residents</div>
-                  </div>
-                  <div class="minichart" on:click={() => rFilter('asian')}>
-                        <div class="miniTitle">Asian: <span class="countstat" id="acount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">5% of Minnesota residents</div>
-                  </div>
-                  <div class="minichart" on:click={() => rFilter('multi')}>
-                        <div class="miniTitle">Others: <span class="countstat" id="other"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">3% of Minnesota residents</div>
-                  </div>
+                  <div id="white" class="minichart" on:click={() => rFilter('white')}></div>
+                  <div id="black" class="minichart" on:click={() => rFilter('black')}></div>
+                  <div id="hispanic" class="minichart" on:click={() => rFilter('hispanic')}></div>
+                  <div id="native" class="minichart" on:click={() => rFilter('american indian')}></div>
+                  <div  id="asian" class="minichart" on:click={() => rFilter('asian')}></div>
+                  <div  id="other" class="minichart" on:click={() => rFilter('multi')}></div>
 
 
-                  <div class="minichart" on:click={() => gFilter('male')}>
-                        <div class="miniTitle">Male: <span class="countstat" id="male"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
-                  </div>
-                  <div class="minichart" on:click={() => gFilter('female')}>
-                        <div class="miniTitle">Female: <span class="countstat" id="female"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
-                  </div>
+                  <div id="male" class="minichart" on:click={() => gFilter('male')}></div>
+                  <div id="female" class="minichart" on:click={() => gFilter('female')}></div>
 
 
-                  <div class="minichart" on:click={() => lFilter('minneapolis')}>
-                        <div class="miniTitle">Minneapolis: <span class="countstat" id="mcount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">5% of Minnesota residents</div>
-                  </div>
-                  <div class="minichart" on:click={() => lFilter('st. paul')}>
-                        <div class="miniTitle">St. Paul: <span class="countstat" id="spcount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">3% of Minnesota residents</div>
-                  </div>
-                  <div class="minichart" on:click={() => lFilter('metro')}>
-                        <div class="miniTitle">Metro suburbs: <span class="countstat" id="scount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">5% of Minnesota residents</div>
-                  </div>
-                  <div class="minichart" on:click={() => lFilter('outstate')}>
-                        <div class="miniTitle">Greater Minnesota: <span class="countstat" id="mncount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
-                        <div class="mnlabel">3% of Minnesota residents</div>
-                  </div>
+                  <div id="minneapolis" class="minichart" on:click={() => lFilter('minneapolis')}></div>
+                  <div id="stpaul" class="minichart" on:click={() => lFilter('st. paul')}></div>
+                  <div id="suburbs" class="minichart" on:click={() => lFilter('metro')}></div>
+                  <div id="greater" class="minichart" on:click={() => lFilter('outstate')}></div>
 
-                  <div class="minichart" on:click={() => wFilter('gun')}>
-                        <div class="miniTitle">Firearm: <span class="countstat" id="fcount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
-                  </div>
-                  <div class="minichart" on:click={() => wFilter('bladed weapon')}>
-                        <div class="miniTitle">Bladed weapon: <span class="countstat" id="bcount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
-                  </div>
-                  <div class="minichart" on:click={() => wFilter('other')}>
-                        <div class="miniTitle">Other weapon: <span class="countstat" id="acount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="astat"></span> of police-involved deaths</div>
-                  </div>
-                  <div class="minichart" on:click={() => wFilter('unarmed')}>
-                        <div class="miniTitle">Unarmed: <span class="countstat" id="ucount"></span></div>
-                        <div class="statlabel"><span class="pctstat" id="ostat"></span> of police-involved deaths</div>
-                  </div>
+                  <div id="firearm" class="minichart" on:click={() => wFilter('gun')}></div>
+                  <div id="bladed" class="minichart" on:click={() => wFilter('bladed weapon')}></div>
+                  <div id="weapons" class="minichart" on:click={() => wFilter('other')}></div>
+                  <div id="unarmed" class="minichart" on:click={() => wFilter('unarmed')}></div>
             </div>
             <div id="map" class="viz"><MapMain/></div>
             <div id="mchart" class="viz"></div>
       </div>
 
-<Search bind:searchTerm on:input={search} />
+<Search on:input={search} />
 
-<div>
+<div id="cardSpill">
 {#await promise}
 	<p>Loading...</p>
 {:then d}
 	{#each d as d}
       	<div class='card {clicked[d.index]}' id="card{d.index}" name="{d.FirstName} {d.LastName}" race="{d.Race}" weapon="{d.WeaponCategory}" region="{d.Region}" gender="{d.Gender}" manner="{d.MannerDeath}">
-                  <div class='x {hidden[d.index]}' on:click={() => closespand(d.index)}>&#10006;</div>
-                  <div class='expand {show[d.index]}' on:click={() => clickspand(d.index)}>&#8690;</div>
 
+                  <div class='x {hidden[d.index]}' on:click={() => closespand(d.index)}>&#10006;</div>
 
       		<div class='leftSide'>
       			<div class='photos'><img height='150' src='./img/{d.photo2}' rel='photo' alt='photo' /></div>
       		</div>
       		<div class='rightSide'>
       			<div class='name'>{d.FirstName} {d.LastName}</div>
-      			<div class='vitals'><span class='race'>{d.Race}</span> <span class='gender'>{d.Gender}</span> {d.AgeYears}</div>
+      			<div class='vitals'><span class='race'>{d.Race}</span> – <span class='gender'>{d.Gender}</span> – {d.AgeYears}</div>
       			<div class='location'>{d.InjuryCity} <span class='region'>{d.Region}</span></div>
-                        <div>Weapon: {d.Weapon} (<span class="weapon">{d.WeaponCategory}</span>)</div>
+                        <div>Weapon: {d.Weapon} <span class="weapon">{d.WeaponCategory}</span></div>
       			<div>Agencies involved: {d.Agency}</div>
       		</div>
                   <div class="bottomSide {hidden[d.index]}">
@@ -371,6 +311,8 @@ onMount(() => {
                         <div class='scrollTop'><a href="#count">&#8679; return to top</a></div>
                   </div>
                   <div class='readmore'><a href='{d.URL}'>Read more coverage</a></div>
+
+                  <div class='expand {show[d.index]}' on:click={() => clickspand(d.index)}>&#8690;</div>
       	</div>
 	{/each}
 {:catch error}

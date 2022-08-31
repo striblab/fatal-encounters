@@ -1,16 +1,26 @@
+#cardSpill {
+    width:100%;
+}
+
 .card {
     position: relative;
     padding: 10px;
     height: auto;
     width: 47%;
-    font-size: .65em;
+    font-size: 12px;
     line-height: 140%;
-    min-height:300px;
+    min-height: 300px;
     display: inline-block;
     vertical-align: top;
     background-color: #eee;
     margin-bottom: 20px;
-    border: 0.5px solid black;
+    border: 2px solid white;
+    font-family: "Benton Sans",Helvetica,Arial,sans-serif;
+
+    @media only screen and (max-width: 600px) {
+        width:97%;
+        border: 0;
+    }
 }
 
 
@@ -19,7 +29,7 @@
 }
 
 .cardspand {
-    width:100% !important;
+    width:97% !important;
 }
 
 .card .mentalSwatch {
@@ -39,8 +49,6 @@
 }
 
 .rightSide {
-    float: right;
-    width: 15%;
     border: 0 solid #eee;
     width: 100% !important;
     height: auto;
@@ -85,4 +93,33 @@ li {
 
 .hidden {
     display:none;
+}
+
+.expand, .x {
+    font-size: 30px;
+    float: right;
+}
+
+.expand:hover, .x:hover {
+    cursor:pointer;
+    opacity:0.8;
+}
+
+.readmore, .readmore a {
+    text-align: left;
+    width: 100%;
+    text-decoration: none;
+    color: #b75b60;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.scrollTop, .scrollTop a {
+    text-decoration: none;
+    color:#333;
+    font-size: 15px;
+}
+
+.weapon, .region {
+    visibility:hidden;
 }

@@ -12,7 +12,6 @@ body {
 	color: #333;
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 }
 a {
 	color: #036;
@@ -103,6 +102,7 @@ button:focus {
 	max-width:800px;
 	margin-right:auto;
 	margin-left:auto;
+	font-family: "Benton Sans",Helvetica,Arial,sans-serif;
 }
 .container-lg p {
 	max-width: 520px;

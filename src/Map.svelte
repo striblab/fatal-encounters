@@ -27,7 +27,7 @@ map = new mapboxgl.Map({
   center: center,
   zoom: zoom,
   minZoom: zoom,
-  maxZoom: 16,
+  maxZoom: 14,
   maxBounds: [-97.25, 43.2, -89.53, 49.5],
   scrollZoom: false
 });
