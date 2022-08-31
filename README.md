@@ -1,6 +1,6 @@
 # Star Tribune Fatal Encounters Database v3.0
 
-This is a database of everyone who died in encounters with police officers across Minnesota since the year 2000. The records are 
+This is a database of everyone who died in encounters with police officers across Minnesota since the year 2000. The data are derived from death records and media reports.
 
 ## History
 
