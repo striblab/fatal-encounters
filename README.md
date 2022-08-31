@@ -14,6 +14,8 @@ As the Star Tribune's technological prowess evolved and newsroom development mat
 
 In 2018-2019, as the Star Tribune newsroom adopted modern development workflows, the project was ported to a [generator-striblab](https://github.com/striblab/generator-striblab) instance where it could breathe outside of iframes with the help of backend solutions like Directus to feed LCD template overrides. While this modernized the project in significant ways, the core D3-powered code remained largely unchanged from 2015, so keeping it running and adding new features became increasingly challenging.
 
+The years 2020-2021 were spent furiously patching everything that broke every few months and attempting to address rising issues of editorial nuance until we simply outgrew the crumbling box crafted for this project.
+
 In 2022, development on a new from-scratch version of the project began with an eye upon reimagining the database based on seven years of reader feedback and development lessons learned.
 
 ## Changes
