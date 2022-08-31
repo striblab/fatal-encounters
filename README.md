@@ -42,6 +42,7 @@ Key upgrades and changes in this version:
 * Needs top-to-bottom restyling with digital designer input
 * There are probably 36 quadrillion mobile design fixes to make, it should be stress-tested across devices
 * Map draws from a local GEOJSON file that has to be manually generated – perhaps automate in some way?
+* Revisit and streamline how new entries are added, especially with localized photos
 
 
 ## About the Svelte App
