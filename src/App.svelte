@@ -74,7 +74,7 @@
             var locationTargets = ["minneapolis", "stpaul", "suburbs", "greater"];
             var locationLabels = ["Minneapolis", "St. Paul", "Metro suburbs", "Greater Minnesota"];
             var locationCounts = [countsByLocation[1], countsByLocation[3], countsByLocation[0], countsByWeapon[2]];
-            var locationMN = ["8%", "5%", "35%", "25%"];
+            var locationMN = ["8%", "5%", "45%", "42%"];
             miniCharts(locationTargets,locationLabels,locationCounts,locationMN,true);
 
             var weaponTargets = ["firearm", "bladed", "weapons", "unarmed"];
