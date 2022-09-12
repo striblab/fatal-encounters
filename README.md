@@ -2,6 +2,8 @@
 
 This is a database of everyone who died in encounters with police officers across Minnesota since the year 2000. The data are derived from death records and media reports and fed into a live Google Sheet.
 
+[LIVE VERSION ON STATIC](https://static.startribune.com/news/projects/all/20220930-fataloisv3/build)
+
 ## History
 
 This was initially developed for the project "A Cry For Help" but launched early in November 2015 immediately following the police-involved death of Jamar Clark in Minneapolis. That version was functional but held together by hope, tape and staples, and built mostly using D3, jQuery, HTML and CSS, with data fed from a Google Sheet so reporters could update the database in real time.
