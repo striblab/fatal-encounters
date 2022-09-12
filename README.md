@@ -37,6 +37,7 @@ Key upgrades and changes in this version:
 
 ## Things to fix
 
+* Shift data source from Google Sheets to Airtables
 * Better, more intuitive UI design
 * Styling interface elements onclick to signal current views
 * Filters and search work off jQuery instead of Svelte (I don't mind jQuery, but the developer world seems to have declared holy war against it)
