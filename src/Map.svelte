@@ -14,7 +14,7 @@ let center = [-93.265015, 44.977753];
 let mcenter = [-93.265015, 44.977753];
 let zoom = 9.5;
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoic3RhcnRyaWJ1bmUiLCJhIjoiY2sxYjRnNjdqMGtjOTNjcGY1cHJmZDBoMiJ9.St9lE8qlWR5jIjkPYd3Wqw';
+let accessToken = 'pk.eyJ1Ijoic3RhcnRyaWJ1bmUiLCJhIjoiY2sxYjRnNjdqMGtjOTNjcGY1cHJmZDBoMiJ9.St9lE8qlWR5jIjkPYd3Wqw';
 
 var map;
 
@@ -29,7 +29,8 @@ map = new mapboxgl.Map({
   minZoom: zoom,
   maxZoom: 14,
   maxBounds: [-97.25, 43.2, -89.53, 49.5],
-  scrollZoom: false
+  scrollZoom: false,
+  accessToken: accessToken
 });
 
 /********** SPECIAL RESET BUTTON **********/

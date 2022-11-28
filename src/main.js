@@ -1,13 +1,9 @@
-import App from './App.svelte';
-import './scss/style.scss';
+import './scss/style.scss'
+import App from './App.svelte'
 
 const app = new App({
-	target: document.querySelector('#proj-container'),
-	props: {
-		'title': 'Star Tribune Svelte 3 app'
-	}
-});
-
-window.app = app;
+  target: document.getElementById('proj-container')
+})
 
 export default app;
+
