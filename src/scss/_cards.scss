@@ -1,36 +1,21 @@
 #cardSpill {
-    width:100%;
-}
+    display: flex;
+    flex-wrap: wrap;
 
-.card {
-    position: relative;
-    padding: 10px;
-    height: auto;
-    width: 47%;
-    font-size: 12px;
-    line-height: 140%;
-    min-height: 300px;
-    display: inline-block;
-    vertical-align: top;
-    background-color: #eee;
-    margin-bottom: 20px;
-    border: 2px solid white;
-    font-family: "Benton Sans",Helvetica,Arial,sans-serif;
+    .card {
+        flex-basis: 400px;
+        margin: 1em;
+        padding: 1em;
+        background-color: #ccc;
+        font-family: "Benton Sans",Helvetica,Arial,sans-serif;
 
-    @media only screen and (max-width: 600px) {
-        width:97%;
-        border: 0;
-    }
+        h4 {
+            margin-top: 0;
+        }
+    }    
 }
 
 
-.card div {
-    padding: 3px;
-}
-
-.cardspand {
-    width:97% !important;
-}
 
 .card .mentalSwatch {
     background-color: #fff !important;
@@ -76,11 +61,6 @@
 .break {
     clear: both;
 }
-
-li {
-    list-style: none !important;
-}
-/*   .url { display:none; }*/
 
 .description {
     font-weight: bold;

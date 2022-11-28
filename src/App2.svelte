@@ -14,7 +14,10 @@
         An error occurred while loading the data. {console.log(error)}
     </div>
 {:else if $deaths}
-    {#each $deaths as d}
-        <Card record={d} />
-    {/each}
+    <section id="cardSpill">
+        {#each $deaths as record}
+            <Card {record}/>
+        {/each}
+    </section>
+    
 {/if}
