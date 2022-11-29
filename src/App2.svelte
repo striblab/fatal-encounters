@@ -1,8 +1,13 @@
 <script>
+
     import getData from "./lib/getData";
     import Card from "./lib/components/Card.svelte";
+    import Filters from "./lib/components/Filters.svelte"
 
-    const {isLoading, error, data: deaths} = getData();
+    const {isLoading, error, data: allData, filteredData: filteredData} = getData();
+
+    
+    
 </script>
 
 {#if $isLoading }
@@ -13,9 +18,12 @@
     <div class="appinfo">
         An error occurred while loading the data. {console.log(error)}
     </div>
-{:else if $deaths}
+{:else if $filteredData}
+    <section id="filters">
+        <Filters bind:filteredData={$filteredData} allData={$allData}/>
+    </section>
     <section id="cardSpill">
-        {#each $deaths as record}
+        {#each $filteredData as record}
             <Card {record}/>
         {/each}
     </section>

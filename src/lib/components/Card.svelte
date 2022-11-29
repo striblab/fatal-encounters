@@ -1,14 +1,8 @@
 <script>
+    import { toTitleCase } from "../helpers";
+
     export let record;
 
-    function toTitleCase(str) {
-        return str.replace(
-            /\w\S*/g,
-            function(txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            }
-        );
-    }
 </script>
 
 <section class="card" id="record{record.index}">
@@ -23,7 +17,7 @@
              record.Race.toLowerCase() : 
              record.Race == "MULTI" ?
              "multiracial" :
-             record.Race.charAt(0) + record.Race.substr(1).toLowerCase()}
+             toTitleCase(record.Race)}
         {/if}
         {#if record.Gender != "PENDING"}
             {record.Gender.toLowerCase()}
