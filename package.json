@@ -19,6 +19,7 @@
     "journalize": "^2.2.1",
     "jquery": "^3.6.0",
     "mapbox-gl": "^2.7.0",
+    "minisearch": "^6.0.0-beta.1",
     "svelte-tooltip-action": "^1.0.4",
     "underscore": "^1.13.2"
   }
