@@ -19,7 +19,8 @@
             "Race",
             "Gender",
             "Agency",
-            "WeaponCategory"
+            "WeaponCategory",
+            "InjuryDate"
         ]
     })
 

@@ -1,13 +1,13 @@
 <script>
     import { toTitleCase } from "../helpers";
-
+    import { apdate } from "journalize";
     export let record;
 
 </script>
 
 <section class="card" id="record{record.index}">
 
-    <h4>{record.FirstName} {record.MiddleName} {record.LastName} {record.Suffix}</h4>
+    <h4>{record.FirstName} {record.LastName} {record.Suffix}</h4>
     <section class="vitals">
         {#if record.AgeYears != "PENDING"}
             {record.AgeYears} year-old
@@ -25,8 +25,8 @@
     </section>
     <section class="incident-details">
         <ul>
-            <li>Killed in {toTitleCase(record.InjuryCity)}</li>
-            <li>Agency involved: {toTitleCase(record.Agency)}</li>
+            <li>Killed in {toTitleCase(record.InjuryCity)} on {apdate(new Date(record.InjuryDate))}</li>
+            <li>Agency involved: {toTitleCase(record.Agency).replace("Pd","Police Department").replace("So", "Sheriff's Office")}</li>
             {#if record.WeaponCategory != "PENDING" && record.WeaponCategory != "UNKNOWN"}
                 {#if record.WeaponCategory == "UNARMED"}
                     <li>Authorities said {record.LastName} was {record.WeaponCategory.toLowerCase()}</li>
