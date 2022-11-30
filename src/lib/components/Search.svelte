@@ -21,7 +21,8 @@
             "WeaponCategory",
             "InjuryDate",
             "photo2",
-            "StribNarrative"
+            "StribNarrative",
+            "expanded"
         ]
     })
 
