@@ -1,6 +1,8 @@
-import { writable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
+import { values } from 'underscore';
 
 export const {isLoading, error, allData, filteredData} = getData()
+
 
 function getData() {
     const allData = writable();
@@ -16,8 +18,9 @@ function getData() {
             const {mn_shootings: deaths} = await response.json();
             // @ts-ignore
             let sorted_data = deaths.sort((a,b) => new Date(b.InjuryDate) - new Date(a.InjuryDate))
+            deaths.forEach(d => d["expanded"] = false)
             allData.set(sorted_data);
-            filteredData.set(deaths);
+            filteredData.set(sorted_data);
             error.set();
         } catch(err) {
             allData.set();

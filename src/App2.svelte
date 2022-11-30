@@ -1,6 +1,6 @@
 <script>
 
-    import {isLoading, error, allData, filteredData} from "./lib/getData";
+    import { isLoading, error, allData, filteredData } from "./lib/getData";
 
     import Card from "./lib/components/Card.svelte";
     import Filters from "./lib/components/Filters.svelte"

@@ -20,7 +20,8 @@
             "Agency",
             "WeaponCategory",
             "InjuryDate",
-            "photo2"
+            "photo2",
+            "StribNarrative"
         ]
     })
 

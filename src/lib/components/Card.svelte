@@ -4,19 +4,17 @@
     import { slide } from "svelte/transition"
     export let record;
 
-    let expanded = false;
-
     function toggleNarrative(){
-        if (!expanded) {
-            expanded = true
+        if (!record.expanded) {
+            record.expanded = true
         } else {
-            expanded = false
+            record.expanded = false
         }
     }
 
 </script>
 
-<section class="card" class:expanded={expanded} id="record{record.index}">
+<section class="card" class:expanded={record.expanded} id="record{record.index}">
 
     <h3>{record.FirstName} {record.LastName} {record.Suffix}</h3>
     <section class="flex-container">
@@ -63,12 +61,12 @@
             `photo of ${record.FirstName} ${record.LastName}`}" 
         />
     </section>
-    {#if expanded}
+    {#if record.expanded}
     <section class="narrative" transition:slide>
         {record.StribNarrative}
     </section>
     {/if}
-    <button class="read-more" on:click={toggleNarrative}>{#if !expanded}Read more…{:else}Show less &uArr;{/if}</button>
+    <button class="read-more" on:click={toggleNarrative}>{#if !record.expanded}Read more…{:else}Show less &uArr;{/if}</button>
 </section>
 
 <style>
