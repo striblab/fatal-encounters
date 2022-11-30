@@ -34,3 +34,11 @@
     </section>
     
 {/if}
+
+<style>
+    #cardSpill {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+</style>
