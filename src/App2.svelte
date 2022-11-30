@@ -44,6 +44,6 @@
         display: flex;
         flex-wrap: wrap;
         align-items: stretch;
-        justify-content: space-evenly;
+        justify-content: space-between;
     }
 </style>

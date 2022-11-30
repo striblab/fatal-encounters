@@ -38,5 +38,28 @@
     }
 </script>
 
+<div id="searchContainer">
+    <input 
+        id="searchBox" 
+        bind:value={searchTerm} 
+        on:keyup={searchRaces} 
+        placeholder="Search for a name or location&hellip;" 
+    />
+</div>
 
-<input id="searchBox" bind:value={searchTerm} on:keyup={searchRaces} />
+<style>
+
+    #searchContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #searchBox {
+        flex-basis: 1000px;
+        font-size:1em;
+        line-height: 1.6em;
+        padding: .25em;
+        margin: 0 1em;
+    }
+</style>

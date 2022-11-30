@@ -81,6 +81,10 @@
         font-weight: 700;
     }
 
+    .by-year-chart {
+        align-self: flex-start;
+    }
+
     .ylabel {
         display:inline-block;
         width:40px;
@@ -90,6 +94,7 @@
 
     .year {
         height:21px;
+        display: flex;
     }
 
     .block {

@@ -105,26 +105,27 @@
             <label for="region-{region}" class="region-filter">{toTitleCase(region)}</label>
         </div>
     {/each}
+    {#if filtering}
+    <input
+        class="visually-hidden"
+        id="clear"
+        type="checkbox"
+        on:change={clearFilters}
+    />
+    <label for="clear" class="clear"><span class="x">&#10060;</span>Clear filters</label>
+    {/if}
 </div>
 
 
-    {#if filtering}
-    <div>
-        <input
-            class="visually-hidden"
-            id="clear"
-            type="checkbox"
-            on:change={clearFilters}
-        />
-        <label for="clear" class="clear"><span class="x">&#10060;</span>Clear filters</label>
-    </div>
-    {/if}
 
-{#if $filteredData.length !== $allData.length}
     <section class="filter-info">
+        {#if filtering}
         <p>Showing {$filteredData.length} of {$allData.length} total records.</p>
+        {:else}
+        <p>&nbsp;</p>
+        {/if}
     </section>
-{/if}
+
 
 <style>
     .filter-info p {
@@ -155,6 +156,7 @@
         border: none;
         color: #9b4242;
         padding-left:0;
+        margin-left:2em;
     }
 
     .x {
