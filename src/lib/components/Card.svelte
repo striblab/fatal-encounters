@@ -42,7 +42,7 @@
                         {/if}
                     </li>
                     <li>Agency involved: {toTitleCase(record.Agency).replace("Pd","Police Department").replace("So", "Sheriff's Office")}</li>
-                    {#if record.WeaponCategory != "PENDING" && record.WeaponCategory != "UNKNOWN"}
+                    {#if record.WeaponCategory != "PENDING" && record.WeaponCategory != "UNKNOWN" && record.WeaponCategory != "OTHER"}
                         {#if record.WeaponCategory == "UNARMED"}
                             <li>Authorities said {record.LastName} was {record.WeaponCategory.toLowerCase()}.</li>
                         {:else}
@@ -76,10 +76,11 @@
 
 .card {
     flex-basis: 550px;
-    margin: 0.5em;
+    margin: 1em 0 1em;
     padding: 1em;
-    background-color: #F8F8F8;
+    background-color: #ffffff;
     font-family: "Benton Sans",Helvetica,Arial,sans-serif;
+    border: 1px solid #999999;
 }
 
 h3 {
@@ -104,7 +105,7 @@ ul {
 li {
     list-style-type: none;
     margin-bottom: .75em;
-    line-height: 1.2em;
+    line-height: 1.4em;
 }
 
 .flex-container {
@@ -115,7 +116,7 @@ li {
 
 .read-more {
     background-color: none;
-    border: 2px solid #666666;
+    border: 1px solid #666666;
     border-radius: 10px;
     color: #333333;
     padding: 5px 10px;
