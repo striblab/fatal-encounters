@@ -75,7 +75,7 @@
 <style>
 
 .card {
-    flex-basis: 45%;
+    flex-basis: 550px;
     margin: 0.5em;
     padding: 1em;
     background-color: #F8F8F8;
@@ -110,6 +110,7 @@ li {
 .flex-container {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .read-more {
