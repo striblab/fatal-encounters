@@ -106,7 +106,7 @@
 
     .block:hover {
         cursor:pointer;
-        background-color:#666666;
+        background-color:#e1b79c;
     }
 
 </style>
