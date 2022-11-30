@@ -1,7 +1,9 @@
 <script>
     import { toTitleCase } from "../helpers";
-
     import { allData, filteredData } from "../getData";
+    let filtering = false;
+
+
 
     let raceFilters = {};
     let races = Array.from(new Set($allData.map((d)=> d.Race)));
@@ -39,36 +41,84 @@
             $filteredData = $filteredData.filter((d) => activeFilters.indexOf(d[filterField]) != -1);
         }
     }
+    
+    const clearFilters = () => {
+        let checks = document.getElementsByClassName("filter")
+        Array.prototype.forEach.call(checks, (c)=>{
+            c.checked = false
+        });
+        raceFilters = {}
+        sexFilters = {}
+        regionFilters = {}
+        filterData();
+    }
+
+    $: filtering = (Object.values(raceFilters).concat(Object.values(sexFilters)).concat(Object.values(regionFilters))).includes(true)
+
 </script>
 
-Show only: 
-{#each races as race}
-    <input 
-        id="race-{race}" 
-        type="checkbox" 
-        bind:checked={raceFilters[race]} 
-        on:change={filterData}
-    />
-    <label for="race-{race}">{toTitleCase(race)}</label>
-{/each}
-{#each sexes as sex}
-    <input 
-        id="sex-{sex}" 
-        type="checkbox" 
-        bind:checked={sexFilters[sex]} 
-        on:change={filterData}
-    />
-    <label for="sex-{sex}">{toTitleCase(sex)}</label>
-{/each}
-{#each regions as region}
-    <input 
-        id="region-{region}" 
-        type="checkbox" 
-        bind:checked={regionFilters[region]} 
-        on:change={filterData}
-    />
-    <label for="region-{region}">{toTitleCase(region)}</label>
-{/each}
+<p>Filter records by&hellip;</p>
+
+<div class="filter-group">
+    <span class="filter-group-label">Race:</span>
+    {#each races as race}
+        <div>
+            <input 
+                class="visually-hidden filter"
+                id="race-{race}" 
+                type="checkbox" 
+                bind:checked={raceFilters[race]} 
+                on:change={filterData}
+            />
+            <label for="race-{race}" class="race-filter">{race === "MULTI" ? "Multiracial" : toTitleCase(race)}</label>
+        </div>
+    {/each}
+</div>
+
+<div class="filter-group">
+    <span class="filter-group-label">Sex:</span> 
+    {#each sexes as sex}
+        <div>
+            <input 
+                class="visually-hidden filter"
+                id="sex-{sex}" 
+                type="checkbox" 
+                bind:checked={sexFilters[sex]} 
+                on:change={filterData}
+            />
+            <label for="sex-{sex}" class="sex-filter">{toTitleCase(sex)}</label>
+        </div>
+    {/each}
+</div>
+
+<div class="filter-group">
+    <span class="filter-group-label">Region:</span>
+    {#each regions as region}
+        <div>
+            <input
+                class="visually-hidden filter"
+                id="region-{region}" 
+                type="checkbox" 
+                bind:checked={regionFilters[region]} 
+                on:change={filterData}
+            />
+            <label for="region-{region}" class="region-filter">{toTitleCase(region)}</label>
+        </div>
+    {/each}
+</div>
+
+
+    {#if filtering}
+    <div>
+        <input
+            class="visually-hidden"
+            id="clear"
+            type="checkbox"
+            on:change={clearFilters}
+        />
+        <label for="clear" class="clear"><span class="x">&#10060;</span>Clear filters</label>
+    </div>
+    {/if}
 
 {#if $filteredData.length !== $allData.length}
     <section class="filter-info">
@@ -79,5 +129,50 @@ Show only:
 <style>
     .filter-info p {
         font-weight: 700;
+    }
+
+    .filter-group {
+        display: block;
+    }
+
+    .filter-group-label{
+        font-weight: 700;
+    }
+
+    div {
+        display: inline-block;
+        margin: 3px;
+    }
+
+    label {
+        border: 1px solid #ccc;
+        padding: 5px 12px;
+        border-radius: 15px;
+        display:inline-block;
+    }
+
+    label.clear {
+        border: none;
+        color: #9b4242;
+        padding-left:0;
+    }
+
+    .x {
+        font-size: .5em;
+        vertical-align: middle;
+    }
+
+    .filter:checked ~ label {
+        color: #555555;
+    }
+
+    .filter:checked ~ label.race-filter {
+        background-color: #eaa99e;
+    }
+    .filter:checked ~ label.sex-filter {
+        background-color: #b3afca;
+    }
+    .filter:checked ~ label.region-filter {
+        background-color: #e1b79c;
     }
 </style>
