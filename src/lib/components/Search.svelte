@@ -22,7 +22,8 @@
             "InjuryDate",
             "photo2",
             "StribNarrative",
-            "expanded"
+            "expanded",
+            "Region"
         ]
     })
 
