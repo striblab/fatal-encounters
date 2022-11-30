@@ -63,10 +63,13 @@
     </section>
     {#if record.expanded}
     <section class="narrative" transition:slide>
-        {record.StribNarrative}
+        <p>{record.StribNarrative}</p>
+        {#if record.URL}
+        <p><a href="{record.URL}" target="_blank" rel="noreferrer">Read more coverage...</a></p>
+        {/if}
     </section>
     {/if}
-    <button class="read-more" on:click={toggleNarrative}>{#if !record.expanded}Read more…{:else}Show less &uArr;{/if}</button>
+    <button class="read-more" on:click={toggleNarrative}>{#if !record.expanded}Read more...{:else}Show less &uArr;{/if}</button>
 </section>
 
 <style>
@@ -123,6 +126,10 @@ li {
 
 .narrative {
     padding: 1em 1em 1em 5px;
+}
+
+.narrative p {
+    line-height: 1.6em;
 }
 
 </style>
