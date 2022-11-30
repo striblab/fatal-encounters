@@ -5,10 +5,7 @@
     import Card from "./lib/components/Card.svelte";
     import Filters from "./lib/components/Filters.svelte"
     import Search from "./lib/components/Search.svelte"
-
-    // const {isLoading, error, data: allData, filteredData: filteredData} = getData();
-
-    
+    import CountChart from "./lib/components/CountChart.svelte";
     
 </script>
 
@@ -21,6 +18,9 @@
         An error occurred while loading the data. {console.log(error)}
     </div>
 {:else if $filteredData}
+    <section id="count-chart">
+        <CountChart />
+    </section>
     <section id="filters">
         <Filters />
     </section>
@@ -36,9 +36,14 @@
 {/if}
 
 <style>
+    section {
+        margin: 2em 0 2em;
+    }
+
     #cardSpill {
         display: flex;
         flex-wrap: wrap;
         align-items: stretch;
+        justify-content: space-between;
     }
 </style>

@@ -11,26 +11,7 @@
 #chart {
     display:block
 }
-.ylabel {
-    display:inline-block;
-    width:40px;
-    font-size:15px;
-    color:#888;
-}
-.year {
-    height:21px;
-}
-.block {
-    width:25px;
-    height:11px;
-    margin-right:2px;
-    background-color:#b9625f;
-    display:inline-block;
-}
-.block:hover {
-    cursor:pointer;
-    background-color:#333333;
-}
+
 .minichart {
     width:49.4%;
     display:inline-block;

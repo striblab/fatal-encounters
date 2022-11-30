@@ -23,14 +23,15 @@
             "photo2",
             "StribNarrative",
             "expanded",
-            "Region"
+            "Region",
+            "index"
         ]
     })
 
     miniSearch.addAll($filteredData);
 
     const searchRaces = () => {
-        $filteredData = miniSearch.search(searchTerm, {fuzzy: 0.3})
+        $filteredData = miniSearch.search(searchTerm, {fuzzy: 0.2})
         if (searchTerm == "") {
             $filteredData = $allData;
         }
