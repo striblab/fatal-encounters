@@ -12,6 +12,13 @@
         }
     }
 
+    const scrollToTop = () => {
+        let top = document.getElementById("count-chart")
+        top.scrollIntoView({
+            behavior: "smooth"
+        })
+    }
+
 </script>
 
 <section class="card" class:expanded={record.expanded} id="record{record.index}">
@@ -70,17 +77,22 @@
     </section>
     {/if}
     <button class="read-more" on:click={toggleNarrative}>{#if !record.expanded}Read more...{:else}Show less &uArr;{/if}</button>
+    <a 
+        class="back-to-top-link"
+        href="#count-chart" 
+        on:click|preventDefault={scrollToTop}
+    >Back to top &uArr;</a>
 </section>
 
 <style>
 
 .card {
-    flex-basis: 550px;
+    flex-basis: 500px;
     margin: 1em 0 1em;
-    padding: 1em;
-    background-color: #ffffff;
+    padding: 2em;
+    background-color: #f0f0f0;
     font-family: "Benton Sans",Helvetica,Arial,sans-serif;
-    border: 1px solid #999999;
+    position: relative;
 }
 
 h3 {
@@ -132,6 +144,12 @@ li {
 
 .narrative p {
     line-height: 1.6em;
+}
+
+.back-to-top-link {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
 }
 
 </style>
