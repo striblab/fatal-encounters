@@ -1,6 +1,5 @@
 <script>
-    export let filteredData;
-    export let allData;
+    import { allData, filteredData } from "../getData";
 
     import MiniSearch from "minisearch";
 
@@ -20,16 +19,17 @@
             "Gender",
             "Agency",
             "WeaponCategory",
-            "InjuryDate"
+            "InjuryDate",
+            "photo2"
         ]
     })
 
-    miniSearch.addAll(filteredData);
+    miniSearch.addAll($filteredData);
 
     const searchRaces = () => {
-        filteredData = miniSearch.search(searchTerm, {fuzzy: 0.3})
+        $filteredData = miniSearch.search(searchTerm, {fuzzy: 0.3})
         if (searchTerm == "") {
-            filteredData = allData;
+            $filteredData = $allData;
         }
     }
 </script>

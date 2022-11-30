@@ -1,8 +1,9 @@
 import { writable } from 'svelte/store';
 
+export const {isLoading, error, allData, filteredData} = getData()
 
-export default function getData() {
-    const data = writable();
+function getData() {
+    const allData = writable();
     const error = writable();
     const filteredData = writable();
     const isLoading = writable(false);
@@ -15,11 +16,11 @@ export default function getData() {
             const {mn_shootings: deaths} = await response.json();
             // @ts-ignore
             let sorted_data = deaths.sort((a,b) => new Date(b.InjuryDate) - new Date(a.InjuryDate))
-            data.set(sorted_data);
+            allData.set(sorted_data);
             filteredData.set(deaths);
             error.set();
         } catch(err) {
-            data.set();
+            allData.set();
             filteredData.set();
             error.set(err);
         }
@@ -27,5 +28,5 @@ export default function getData() {
     }
     fetchData();
 
-    return {isLoading, error, data, filteredData}
+    return {isLoading, error, allData, filteredData}
 }
