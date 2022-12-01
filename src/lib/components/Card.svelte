@@ -49,7 +49,10 @@
                         {/if}
                     </li>
                     <li>Agency involved: {toTitleCase(record.Agency).replace("Pd","Police Department").replace("So", "Sheriff's Office")}</li>
-                    {#if record.WeaponCategory != "PENDING" && record.WeaponCategory != "UNKNOWN" && record.WeaponCategory != "OTHER"}
+                    {#if record.WeaponCategory != "PENDING" && 
+                         record.WeaponCategory != "UNKNOWN" && 
+                         record.WeaponCategory != "OTHER" &&
+                         record.WeaponCategory != "UNDETERMINED"}
                         {#if record.WeaponCategory == "UNARMED"}
                             <li>Authorities said {record.LastName} was {record.WeaponCategory.toLowerCase()}.</li>
                         {:else}
