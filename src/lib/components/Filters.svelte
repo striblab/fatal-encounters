@@ -162,6 +162,7 @@
     .x {
         font-size: .5em;
         vertical-align: middle;
+        margin-right:2px;
     }
 
     .filter:checked ~ label {
