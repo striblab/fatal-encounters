@@ -11,7 +11,9 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy-staging": "./strib-deploy.sh --environment staging",
+    "deploy-production": "./strib-deploy.sh --environment production"
   },
   "dependencies": {
     "c3": "^0.4.24",
