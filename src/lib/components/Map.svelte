@@ -23,8 +23,25 @@
             maxBounds: [-105, 43, -80, 50],
             scrollZoom: false,
             accessToken: token
-        })
-        //https://docs.mapbox.com/help/tutorials/create-interactive-hover-effects-with-mapbox-gl-js/
+        });
+
+        let scale = new mapboxgl.ScaleControl({
+            maxWidth: 80,
+            unit: 'imperial'
+        });
+        map.addControl(scale)
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            map.dragPan.disable();
+            map.keyboard.disable();
+            map.dragRotate.disable();
+            map.touchZoomRotate.disableRotation();
+            map.scrollZoom.disable();
+        } else {
+            map.getCanvas().style.cursor = 'pointer';
+            map.addControl(new mapboxgl.NavigationControl({ showCompass: false }),'top-left');
+        }
+
         map.on("load", () =>{
             map.addSource("points", {
                 'type': 'geojson',
