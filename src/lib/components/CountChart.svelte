@@ -34,7 +34,7 @@
     </section>
 
     <section class="by-year-chart">
-        <h4>Deaths by year</h4>
+        <h3>Deaths by year</h3>
         {#each [...deathYears] as [year, records]}
         <div class="year">
             <span class="ylabel">{year}</span>
@@ -65,7 +65,7 @@
         flex-direction: column;
     }
 
-    h4 {
+    h3 {
         margin-top: 0;
     }
 

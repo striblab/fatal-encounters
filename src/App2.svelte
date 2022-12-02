@@ -6,6 +6,7 @@
     import Filters from "./lib/components/Filters.svelte"
     import Search from "./lib/components/Search.svelte"
     import CountChart from "./lib/components/CountChart.svelte";
+    import StatsCharts from "./lib/components/StatsCharts.svelte"
     
 </script>
 
@@ -20,6 +21,9 @@
 {:else if $filteredData}
     <section id="count-chart">
         <CountChart />
+    </section>
+    <section id="stats-charts">
+        <StatsCharts />
     </section>
     <section id="filters">
         <Filters />

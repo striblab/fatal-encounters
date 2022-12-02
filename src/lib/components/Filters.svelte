@@ -57,7 +57,7 @@
 
 </script>
 
-<p>Filter records by&hellip;</p>
+<h3>Filter records by&hellip;</h3>
 
 <div class="filter-group">
     <span class="filter-group-label">Race:</span>
@@ -150,6 +150,7 @@
         padding: 5px 12px;
         border-radius: 15px;
         display:inline-block;
+        cursor: pointer;
     }
 
     label.clear {

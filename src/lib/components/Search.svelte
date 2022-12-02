@@ -28,10 +28,10 @@
         ]
     })
 
-    miniSearch.addAll($filteredData);
+    miniSearch.addAll($allData);
 
     const searchRaces = () => {
-        $filteredData = miniSearch.search(searchTerm, {fuzzy: 0.2})
+        $filteredData = miniSearch.search(searchTerm)
         if (searchTerm == "") {
             $filteredData = $allData;
         }
