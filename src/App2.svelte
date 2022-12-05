@@ -28,9 +28,12 @@
             <div>people have been killed after encounters law enforcement in Minnesota.</div>
         </section>
     </div>
-    <section id="demographics">
-        <Demographics />
-    </section>
+    <div class="flex-container-r" style="justify-content: center;">
+        <section id="demographics">
+            <Demographics />
+        </section>
+    </div>
+    
     <div class="flex-container-r">
         <section id="count-chart">
             <CountChart />
