@@ -2,7 +2,7 @@
 
     import * as mapboxgl from "mapbox-gl"
     import { onMount } from "svelte";
-    import { filteredData } from "../getData";
+    import { filteredData, allData } from "../getData";
     import { HomeReset, MetroReset } from "../mapButtons";
 
     let map;
@@ -48,6 +48,39 @@
         map.addControl(metroZoom, "top-right");
 
         map.on("load", () =>{
+            // Create geojson of all the fatal encounter locations for gray dots when filters are applied
+            let data = {
+                type: "FeatureCollection",
+                features: []
+            }
+
+            $allData.forEach((d)=>{
+                data.features.push({
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: [d.Longitude, d.Latitude]
+                    }
+                })
+            });
+
+            map.addSource("allPoints", {
+                type: "geojson",
+                data: data
+            });
+
+            map.addLayer({
+                id: "allMarkers",
+                source: "allPoints",
+                type: "circle",
+                paint: {
+                    "circle-stroke-color": "#ffffff",
+                    "circle-stroke-width": 1,
+                    "circle-color": "#cccccc"
+                }
+            });
+
+
             // Add a temporary points source which will get replaced once data and map load
             map.addSource("points", {
                 'type': 'geojson',
@@ -67,7 +100,7 @@
             });
 
             map.addLayer({
-                id: "markers",
+                id: "activeMarkers",
                 source: "points",
                 type: "circle",
                 paint: {
@@ -93,7 +126,7 @@
         });
 
         // Hover effects and popup
-        map.on("mousemove", "markers", (event) => {
+        map.on("mousemove", "activeMarkers", (event) => {
 
             map.getCanvas().style.cursor = 'pointer';
 
@@ -121,7 +154,7 @@
             popup.setLngLat(coordinates).setHTML(name).addTo(map);
         });
 
-        map.on("mouseleave", "markers", () => {
+        map.on("mouseleave", "activeMarkers", () => {
             if (pointId) {
                 map.setFeatureState(
                     {
@@ -141,7 +174,7 @@
         });
 
         // Scroll to record on click
-        map.on("click", "markers", (event) => {
+        map.on("click", "activeMarkers", (event) => {
             const el = document.getElementById(event.features[0].properties.id)
             el.scrollIntoView({"behavior":"smooth"})
         });
