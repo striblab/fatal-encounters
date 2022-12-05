@@ -13,7 +13,7 @@
     }
 
     const scrollToTop = () => {
-        let top = document.getElementsByClassName("chart-header")[0]
+        let top = document.getElementById("count-chart")
         top.scrollIntoView({
             behavior: "smooth"
         })
