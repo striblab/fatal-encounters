@@ -33,9 +33,10 @@
         <div class="chart-header">
             <h3>Deaths by year</h3>
         </div>
-        {#each [...deathYears] as [year, records]}
+        {#each [...deathYears].reverse() as [year, records]}
         <div class="year">
             <span class="ylabel">{year}</span>
+            <div class="bars-container">
             {#each records as record}
                 <span 
                     class="block" 
@@ -49,8 +50,29 @@
                 >
                 </span>
             {/each}
+            </div>
         </div>
         {/each}
+        <div class="year">
+            <span class="ylabel"></span>
+            <div class="bars-container axis">
+                <span class="block empty"></span>
+                <span class="block empty"></span>
+                <span class="block empty"></span>
+                <span class="block empty"></span>
+                <span class="block empty">5</span>
+                <span class="block empty"></span>
+                <span class="block empty"></span>
+                <span class="block empty"></span>
+                <span class="block empty"></span>
+                <span class="block empty">10</span>
+                <span class="block empty"></span>
+                <span class="block empty"></span>
+                <span class="block empty"></span>
+                <span class="block empty"></span>
+            </div>
+
+        </div>
     </section>
 </section>
 
@@ -84,8 +106,20 @@
         color:#888;
     }
 
+    .ylabel:nth-last-child(1) {
+        border-right: 1px solid #222;
+    }
+
     .year {
         height:21px;
+        display:flex;
+    }
+
+    .bars-container.axis {
+        border-top: 1px solid #222;
+    }
+
+    .bars-container {
         display: flex;
     }
 
@@ -95,15 +129,34 @@
         margin-right:2px;
         background-color:#cccccc;
         display:inline-block;
+        box-sizing: border-box;
     }
 
     .active {
         background-color: #b9625f;
     }
 
+    .empty {
+        background-color: transparent;
+        text-align: right;
+        font-size: .8em;
+        font-weight: 700;
+        padding-right: 4px;
+        padding-top: 2px;
+    }
+
+    .empty:nth-child(5n) {
+        border-right: 1px solid #222;
+    }
+
     .block:hover {
         cursor:pointer;
         background-color:#e1b79c;
+    }
+
+    .empty:hover {
+        cursor: auto;
+        background-color: transparent;
     }
 
 </style>
