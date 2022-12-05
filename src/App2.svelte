@@ -6,14 +6,9 @@
     import Filters from "./lib/components/Filters.svelte"
     import Search from "./lib/components/Search.svelte"
     import CountChart from "./lib/components/CountChart.svelte";
-    import StatsCharts from "./lib/components/StatsCharts.svelte";
+    import Demographics from "./lib/components/Demographics.svelte";
     import Map from "./lib/components/Map.svelte";
-    import { fade } from "svelte/transition"
 
-    let topComponent = "countchart";
-    const toggler = (event) => {
-        topComponent = event.detail.topComponent;
-    }
     
 </script>
 
@@ -26,27 +21,24 @@
         An error occurred while loading the data. {console.log(error)}
     </div>
 {:else if $filteredData}
-    <div class="flex-container">
+    <div class="flex-container-c">
         <section class="overall-count">
             <div>Since 2000, at least</div> 
                 <div class="big-number">{$allData.length}</div> 
             <div>people have been killed after encounters law enforcement in Minnesota.</div>
         </section>
     </div>
-
-    {#if topComponent == "countchart"}
-    <section id="count-chart" transition:fade>
-        <CountChart on:toggle={toggler}/>
+    <section id="demographics">
+        <Demographics />
     </section>
-    {/if}
-    {#if topComponent == "map"}
-    <section id="encounters-map" transition:fade>
-        <Map on:toggle={toggler}/>
-    </section>
-    {/if}
-    <section id="stats-charts">
-        <StatsCharts />
-    </section>
+    <div class="flex-container-r">
+        <section id="count-chart">
+            <CountChart />
+        </section>
+        <section id="encounters-map">
+            <Map />
+        </section>
+    </div>
     <section id="filters">
         <Filters />
     </section>
@@ -62,24 +54,6 @@
 {/if}
 
 <style>
-    section {
-        margin: 2em 0 2em;
-    }
-
-    #cardSpill {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: stretch;
-        justify-content: space-between;
-    }
-
-    .flex-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-    }
-
     .overall-count {
         text-align: center;
         max-width:16em;
@@ -91,5 +65,40 @@
         font-size: 7em;
         font-weight: 700;
     }
+    
+    section {
+        margin: 2em 0 2em;
+    }
+
+    .flex-container-c {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .flex-container-r {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    #count-chart {
+        flex-grow: 1;
+        flex-basis: 250px;
+    }
+
+    #encounters-map {
+        flex-grow: 2;
+        flex-basis: 350px;
+    }
+
+    #cardSpill {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        justify-content: space-between;
+    }
+
 
 </style>

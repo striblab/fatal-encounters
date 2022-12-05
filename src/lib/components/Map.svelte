@@ -5,16 +5,6 @@
     import { filteredData } from "../getData";
     import { HomeReset, MetroReset } from "../mapButtons";
 
-    import { createEventDispatcher } from "svelte";
-
-    const dispatch = createEventDispatcher();
-
-    const toggle = () => {
-        dispatch("toggle", {
-            topComponent: "countchart"
-        })
-    }
-
     let map;
     let markersLoaded = false;
     let pointId = null;
@@ -49,13 +39,13 @@
             map.scrollZoom.disable();
         } else {
             map.getCanvas().style.cursor = 'pointer';
-            map.addControl(new mapboxgl.NavigationControl({ showCompass: false }),'top-left');
+            map.addControl(new mapboxgl.NavigationControl({ showCompass: false }),'top-right');
         }
         
         const stateZoom = new HomeReset(map);
         const metroZoom = new MetroReset(map);
-        map.addControl(stateZoom, "bottom-left");
-        map.addControl(metroZoom, "bottom-left");
+        map.addControl(stateZoom, "top-right");
+        map.addControl(metroZoom, "top-right");
 
         map.on("load", () =>{
             // Add a temporary points source which will get replaced once data and map load
@@ -198,48 +188,11 @@
     
 </script>
 
-<div class="chart-header">
-    <h3>Map: Fatal encounters with law enforcement</h3>
-    <button on:click={toggle}>Show annual counts</button>
-</div>
-
 <div id="map" class="mapbox-map"></div>
 
 <style>
-
-    .chart-header {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: 3em;
-    }
-
-    h3 {
-        margin: 0 0.5em 0 0;
-    }
-
-    button {
-        border: 0;
-        color: blue;
-        background-color: transparent;
-        cursor: pointer;
-        font-size: .8em;
-    }
-
     #map {
-        height: 575px;
-    }
-
-    :global(.circle-marker) {
-        background-color: #b9625f;
-        opacity: .8;
-        height: 7px;
-        width: 7px;
-        border-radius: 7px;
-        border: 1px solid #cccccc;
-    }
-
-    :global(.circle-marker:hover) {
-        background-color: #e1b79c;
+        height: 100%;
+        min-height: 400px;
     }
 </style>

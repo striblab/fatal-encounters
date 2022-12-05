@@ -2,15 +2,6 @@
     import { allData, filteredData } from "../getData";
     import { group } from "d3"
     import tooltip from "svelte-tooltip-action";
-    import { createEventDispatcher } from "svelte";
-
-    const dispatch = createEventDispatcher();
-
-    const toggle = () => {
-        dispatch("toggle", {
-            topComponent: "map"
-        })
-    }
 
     let activeIndices;
     const style = "margin-top: 20px;";
@@ -40,7 +31,7 @@
 
     <section class="by-year-chart">
         <div class="chart-header">
-            <h3>Deaths by year</h3><button on:click={toggle}>Show on map</button>
+            <h3>Deaths by year</h3>
         </div>
         {#each [...deathYears] as [year, records]}
         <div class="year">
@@ -84,14 +75,6 @@
 
     h3 {
         margin: 0 0.5em 0 0;
-    }
-
-    button {
-        border: 0;
-        color: blue;
-        background-color: transparent;
-        cursor: pointer;
-        font-size: .8em;
     }
 
     .ylabel {
