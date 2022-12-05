@@ -16,6 +16,7 @@
     "deploy-production": "./strib-deploy.sh --environment production"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.1",
     "c3": "^0.4.24",
     "d3": "^7.6.1",
     "journalize": "^2.2.1",

@@ -3,6 +3,7 @@
     import * as mapboxgl from "mapbox-gl"
     import { onMount } from "svelte";
     import { filteredData } from "../getData";
+    import { HomeReset, MetroReset } from "../mapButtons";
 
     let map;
     let markersLoaded = false;
@@ -31,6 +32,9 @@
         });
         map.addControl(scale)
 
+        const stateZoom = new HomeReset(map);
+        const metroZoom = new MetroReset(map);
+
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             map.dragPan.disable();
             map.keyboard.disable();
@@ -41,8 +45,11 @@
             map.getCanvas().style.cursor = 'pointer';
             map.addControl(new mapboxgl.NavigationControl({ showCompass: false }),'top-left');
         }
+        map.addControl(stateZoom, "bottom-left");
+        map.addControl(metroZoom, "bottom-left");
 
         map.on("load", () =>{
+            // Add a temporary points source which will get replaced once data and map load
             map.addSource("points", {
                 'type': 'geojson',
                 'data': {
@@ -86,6 +93,7 @@
             closeOnClick: false
         });
 
+        // Hover effects and popup
         map.on("mousemove", "markers", (event) => {
 
             map.getCanvas().style.cursor = 'pointer';
@@ -96,9 +104,7 @@
                     id: pointId
                 });
             }
-
             pointId = event.features[0].id;
-
             map.setFeatureState(
                 {
                     source: 'points',
@@ -108,14 +114,11 @@
                     hover: true
                 }
             );
-
             const coordinates = event.features[0].geometry.coordinates.slice();
             const name = event.features[0].properties.name;
-
             while (Math.abs(event.lngLat.lng - coordinates[0]) > 180) {
                 coordinates[0] += event.lngLat.lng > coordinates[0] ? 360 : -360;
             }
-
             popup.setLngLat(coordinates).setHTML(name).addTo(map);
         });
 
@@ -138,6 +141,7 @@
             popup.remove();
         });
 
+        // Scroll to record on click
         map.on("click", "markers", (event) => {
             const el = document.getElementById(event.features[0].properties.id)
             el.scrollIntoView({"behavior":"smooth"})
@@ -145,15 +149,13 @@
 
     }
 
+    // Update "points" source based on $filteredData store
     const addMarkers = () => {
-
         let bounds = new mapboxgl.LngLatBounds()
-
         let data = {
             type: "FeatureCollection",
             features: []
         }
-
         $filteredData.forEach((d)=>{
             data.features.push(
                 {
@@ -171,15 +173,9 @@
             )
             bounds.extend([d.Longitude, d.Latitude])
         })
-
         map.getSource("points").setData(data)
-        
-
         map.fitBounds(bounds, {padding: 40});
-
     }
-
-
 
     $: if (map && markersLoaded && $filteredData) {
         addMarkers();
