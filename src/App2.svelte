@@ -8,6 +8,12 @@
     import CountChart from "./lib/components/CountChart.svelte";
     import StatsCharts from "./lib/components/StatsCharts.svelte";
     import Map from "./lib/components/Map.svelte";
+    import { fade } from "svelte/transition"
+
+    let topComponent = "countchart";
+    const toggler = (event) => {
+        topComponent = event.detail.topComponent;
+    }
     
 </script>
 
@@ -20,12 +26,24 @@
         An error occurred while loading the data. {console.log(error)}
     </div>
 {:else if $filteredData}
-    <section id="count-chart">
-        <CountChart />
+    <div class="flex-container">
+        <section class="overall-count">
+            <div>Since 2000, at least</div> 
+                <div class="big-number">{$allData.length}</div> 
+            <div>people have been killed after encounters law enforcement in Minnesota.</div>
+        </section>
+    </div>
+
+    {#if topComponent == "countchart"}
+    <section id="count-chart" transition:fade>
+        <CountChart on:toggle={toggler}/>
     </section>
-    <section id="encounters-map">
-        <Map />
+    {/if}
+    {#if topComponent == "map"}
+    <section id="encounters-map" transition:fade>
+        <Map on:toggle={toggler}/>
     </section>
+    {/if}
     <section id="stats-charts">
         <StatsCharts />
     </section>
@@ -54,4 +72,24 @@
         align-items: stretch;
         justify-content: space-between;
     }
+
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .overall-count {
+        text-align: center;
+        max-width:16em;
+        margin-bottom:1.5em;
+
+    }
+
+    .big-number {
+        font-size: 7em;
+        font-weight: 700;
+    }
+
 </style>

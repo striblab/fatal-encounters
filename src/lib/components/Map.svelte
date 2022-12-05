@@ -5,13 +5,22 @@
     import { filteredData } from "../getData";
     import { HomeReset, MetroReset } from "../mapButtons";
 
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
+
+    const toggle = () => {
+        dispatch("toggle", {
+            topComponent: "countchart"
+        })
+    }
+
     let map;
     let markersLoaded = false;
     let pointId = null;
 
     const token = "pk.eyJ1Ijoic3RhcnRyaWJ1bmUiLCJhIjoiY2xiNWF4OHFoMDRzczNybzEyMXFteTZ1YiJ9.WGjxTW63c5_XCbtZ5f8Yyw";
     const center = [-93.265015, 44.977753];
-    const mcenter = [-93.265015, 44.977753];
     const zoom = 9.5;
 
     const createMap = () => {
@@ -32,9 +41,6 @@
         });
         map.addControl(scale)
 
-        const stateZoom = new HomeReset(map);
-        const metroZoom = new MetroReset(map);
-
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             map.dragPan.disable();
             map.keyboard.disable();
@@ -45,6 +51,9 @@
             map.getCanvas().style.cursor = 'pointer';
             map.addControl(new mapboxgl.NavigationControl({ showCompass: false }),'top-left');
         }
+        
+        const stateZoom = new HomeReset(map);
+        const metroZoom = new MetroReset(map);
         map.addControl(stateZoom, "bottom-left");
         map.addControl(metroZoom, "bottom-left");
 
@@ -183,15 +192,42 @@
 
     onMount(()=>{
         createMap();
-    })
+    });
+
+    
     
 </script>
+
+<div class="chart-header">
+    <h3>Map: Fatal encounters with law enforcement</h3>
+    <button on:click={toggle}>Show annual counts</button>
+</div>
 
 <div id="map" class="mapbox-map"></div>
 
 <style>
+
+    .chart-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 3em;
+    }
+
+    h3 {
+        margin: 0 0.5em 0 0;
+    }
+
+    button {
+        border: 0;
+        color: blue;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: .8em;
+    }
+
     #map {
-        height: 550px;
+        height: 575px;
     }
 
     :global(.circle-marker) {
