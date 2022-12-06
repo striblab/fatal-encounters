@@ -170,13 +170,13 @@
         color: #555555;
     }
 
-    .filter:checked ~ label.race-filter {
+    .filter:checked ~ label.race-filter, .filter:hover ~ label.race-filter {
         background-color: #eaa99e;
     }
-    .filter:checked ~ label.sex-filter {
+    .filter:checked ~ label.sex-filter, .filter:hover ~ label.sex-filter {
         background-color: #b3afca;
     }
-    .filter:checked ~ label.region-filter {
+    .filter:checked ~ label.region-filter, .filter:hover ~ label.region-filter {
         background-color: #e1b79c;
     }
 </style>
