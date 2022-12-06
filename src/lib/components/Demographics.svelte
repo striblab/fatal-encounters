@@ -161,7 +161,7 @@
     }
 
     .stat-bar {
-        height: 11px;
+        height: 0.8rem;
         display: inline-block;
         margin-right: 2px;
     }
