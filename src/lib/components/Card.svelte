@@ -23,22 +23,26 @@
 
 <section class="card" class:expanded={record.expanded} id="record{record.index}">
 
-    <h3>{record.FirstName} {record.LastName} {record.Suffix}</h3>
+    <h4>{record.FirstName} {record.LastName} {record.Suffix}</h4>
     <section class="flex-container">
         <section>
             <section class="vitals">
-                {#if record.AgeYears != "PENDING"}
+                {#if record.AgeYears && record.AgeYears != "PENDING"}
                     {record.AgeYears} year-old
                 {/if}
                 {#if record.Race != "PENDING"}
-                    {record.Race == "WHITE" ? 
+                    {(record.Race == "WHITE" && record.AgeYears && record.AgeYears != "PENDING" ) ? 
                     record.Race.toLowerCase() : 
                     record.Race == "MULTI" ?
                     "multiracial" :
                     toTitleCase(record.Race)}
                 {/if}
                 {#if record.Gender != "PENDING"}
-                    {record.Gender.toLowerCase()}
+                    {((record.Race && record.Race != "PENDING") ||
+                        (record.AgeYears && record.AgeYears!= "PENDING") ) ? 
+                            record.Gender.toLowerCase() :
+                            toTitleCase(record.Gender)
+                    }
                 {/if}
             </section>
             <section class="incident-details">
@@ -90,17 +94,18 @@
 <style>
 
 .card {
-    flex-basis: 500px;
-    margin: 1em 0 1em;
-    padding: 2em;
+    flex-basis: 575px;
+    margin: 0.5em;
+    padding: 3em;
     background-color: #f0f0f0;
     font-family: "Benton Sans",Helvetica,Arial,sans-serif;
     position: relative;
+    box-sizing: border-box;
 }
 
-h3 {
+h4 {
     margin-top: 0;
-    padding-left: 5px;
+    /* padding-left: 5px; */
 }
 
 .photo {
@@ -109,12 +114,13 @@ h3 {
     margin-left: 1em;
 }
 
-.vitals {
+/* .vitals {
     padding-left: 5px;
-}
+} */
 
 ul {
-    padding-left: 5px;
+    /* padding-left: 5px; */
+    padding-left: 0;
 }
 
 li {
@@ -139,11 +145,12 @@ li {
     text-decoration: none;
     display: inline-block;
     font-size: 1em;
+    cursor: pointer;
 }
 
-.narrative {
+/* .narrative {
     padding: 1em 1em 1em 5px;
-}
+} */
 
 .narrative p {
     line-height: 1.6em;

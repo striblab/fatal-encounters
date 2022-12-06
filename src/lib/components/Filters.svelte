@@ -116,15 +116,13 @@
     {/if}
 </div>
 
-
-
-    <section class="filter-info">
-        {#if filtering}
-        <p>Showing {$filteredData.length} of {$allData.length} total records.</p>
-        {:else}
-        <p>&nbsp;</p>
-        {/if}
-    </section>
+<section class="filter-info">
+    {#if filtering}
+    <p>Showing {$filteredData.length} of {$allData.length} total records.</p>
+    {:else}
+    <p>&nbsp;</p>
+    {/if}
+</section>
 
 
 <style>
