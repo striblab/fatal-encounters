@@ -1,5 +1,4 @@
-import { writable, derived } from 'svelte/store';
-import { values } from 'underscore';
+import { writable } from 'svelte/store';
 
 export const {isLoading, error, allData, filteredData} = getData()
 
