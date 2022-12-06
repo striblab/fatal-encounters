@@ -39,29 +39,15 @@ Key upgrades and changes in this version:
 
 * Shift data source from Google Sheets to Airtables
 * Better, more intuitive UI design
-* Styling interface elements onclick to signal current views
-* Filters and search work off jQuery instead of Svelte (I don't mind jQuery, but the developer world seems to have declared holy war against it)
 * Allow for links to multiple related news stories for each profile
-* Clicking the profile card expand button should scroll page to focus on the card
 * Optimize design of profile cards into something sleeker with more insightful information
 * Needs top-to-bottom restyling with digital designer input
 * There are probably 36 quadrillion mobile design fixes to make, it should be stress-tested across devices
-* Map draws from a local GEOJSON file that has to be manually generated – perhaps automate in some way?
 * Revisit and streamline how new entries are added, especially with localized photos
-
-
-## About the Svelte App
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/striblab/svelte3-template-webpack and is a fork of https://github.com/sveltejs/template-webpack.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit striblab/svelte3-template-webpack svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+* ~~Styling interface elements onclick to signal current views~~
+* ~~Filters and search work off jQuery instead of Svelte (I don't mind jQuery, but the developer world seems to have declared holy war against it)~~
+* ~~Clicking the profile card expand button should scroll page to focus on the card~~
+* ~~Map draws from a local GEOJSON file that has to be manually generated – perhaps automate in some way?~~
 
 
 ## Get started
@@ -69,54 +55,19 @@ cd svelte-app
 Install the dependencies...
 
 ```bash
-cd svelte-app
+cd fatal-encounters
 npm install
 ```
 
-...then start webpack:
+...then start vite:
 
 ```bash
 npm run dev
 ```
 
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
+Navigate to [localhost:8080](http://localhost:5173). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
 
 
 ## Deploying to the web
 
-```bash
-npm run deploy
-```
-
-Or, some other suggestions from Rich Harris:
-
-### With [now](https://zeit.co/now)
-
-Install `now` if you haven't already:
-
-```bash
-npm install -g now
-```
-
-Then, from within your project folder:
-
-```bash
-now
-```
-
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public
-```
+Better deploy docs TK!
