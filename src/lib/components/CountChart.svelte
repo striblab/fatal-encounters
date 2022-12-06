@@ -92,11 +92,11 @@
     .chart-header {
         display: flex;
         align-items: center;
-        height: 3em;
+        height: 3rem;
     }
 
     h3 {
-        margin: 0 0.5em 0 0;
+        margin: 0 0.5rem 0 0;
     }
 
     .ylabel {
@@ -111,7 +111,7 @@
     }
 
     .year {
-        height:21px;
+        height:1.2rem;
         display:flex;
     }
 
@@ -121,6 +121,7 @@
 
     .bars-container {
         display: flex;
+        align-items: center;
     }
 
     .block {
@@ -139,7 +140,7 @@
     .empty {
         background-color: transparent;
         text-align: right;
-        font-size: .8em;
+        font-size: .8rem;
         font-weight: 700;
         padding-right: 4px;
         padding-top: 2px;

@@ -95,8 +95,8 @@
 
 .card {
     flex-basis: 575px;
-    margin: 0.5em;
-    padding: 3em;
+    margin: 0.5rem;
+    padding: 3rem;
     background-color: #f0f0f0;
     position: relative;
     box-sizing: border-box;
@@ -109,7 +109,7 @@ h4 {
 .photo {
     float: right;
     max-width: 175px;
-    margin-left: 1em;
+    margin-left: 1rem;
 }
 
 ul {
@@ -118,8 +118,8 @@ ul {
 
 li {
     list-style-type: none;
-    margin-bottom: .75em;
-    line-height: 1.4em;
+    margin-bottom: .75rem;
+    line-height: 1.4rem;
 }
 
 .flex-container {
@@ -137,7 +137,7 @@ li {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1em;
+    font-size: 1rem;
     cursor: pointer;
 }
 

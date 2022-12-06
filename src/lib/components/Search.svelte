@@ -57,9 +57,9 @@
 
     #searchBox {
         flex-basis: 1000px;
-        font-size:1em;
-        line-height: 1.6em;
-        padding: .25em;
-        margin: 0 1em;
+        font-size:1rem;
+        line-height: 1.6rem;
+        padding: .25rem;
+        margin: 0 1rem;
     }
 </style>

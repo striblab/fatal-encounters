@@ -155,11 +155,11 @@
         border: none;
         color: #9b4242;
         padding-left:0;
-        margin-left:2em;
+        margin-left:2rem;
     }
 
     .x {
-        font-size: .5em;
+        font-size: .5rem;
         vertical-align: middle;
         margin-right:2px;
     }

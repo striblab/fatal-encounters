@@ -107,17 +107,17 @@
 
 <style>
     h3 {
-        margin: 0.5em 0 0;
+        margin: 0.5rem 0 0;
     }
 
     .key {
-        font-size: 0.9em;
-        margin: .5em 0;
+        font-size: 0.9rem;
+        margin: .5rem 0;
     }
 
     .key div {
         display: inline-block;
-        margin-right: 1em;
+        margin-right: 1rem;
         vertical-align: middle;
     }
 
@@ -136,7 +136,7 @@
 
     .demographic-charts h4 {
         flex-basis: 100%;
-        margin: 0.4em 0 0.2em;
+        margin: 0.4rem 0 0.2rem;
     }
 
     .chart-group {
@@ -145,19 +145,19 @@
     }
 
     .stat-chart {
-        /* flex-basis: 275px; */
-        font-size: .7em;
-        margin: 0.4em 3em 0.4em 0;
+        font-size: .8rem;
+        margin: 0.4rem 3rem 0.4rem 0;
     }
 
     .stat-chart h5 {
-        font-size: 1.2em;
+        font-size: 0.8rem;
         margin:0;
     }
 
     .stat-chart .bar-group {
         display: flex;
         width: 100%;
+        align-items: center;
     }
 
     .stat-bar {

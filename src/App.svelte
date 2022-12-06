@@ -59,18 +59,18 @@
 <style>
     .overall-count {
         text-align: center;
-        max-width:16em;
+        max-width:16rem;
         margin-bottom:1.5em;
 
     }
 
     .big-number {
-        font-size: 7em;
+        font-size: 7rem;
         font-weight: 700;
     }
     
     section {
-        margin: 2em 0 2em;
+        margin: 2rem 0 2rem;
     }
 
     .flex-container-c {
