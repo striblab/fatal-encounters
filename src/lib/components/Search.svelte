@@ -34,7 +34,6 @@
 
     const searchRaces = () => {
         $filteredData = miniSearch.search(searchTerm);
-        $filteredData = $filteredData;
         if (searchTerm == "") {
             $filteredData = $allData;
         }
