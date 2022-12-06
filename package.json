@@ -17,13 +17,10 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.1",
-    "c3": "^0.4.24",
     "d3": "^7.6.1",
     "journalize": "^2.2.1",
-    "jquery": "^3.6.0",
     "mapbox-gl": "^2.11.0",
     "minisearch": "^6.0.0-beta.1",
-    "svelte-tooltip-action": "^1.0.4",
-    "underscore": "^1.13.2"
+    "svelte-tooltip-action": "^1.0.4"
   }
 }
