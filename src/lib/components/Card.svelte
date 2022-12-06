@@ -98,14 +98,12 @@
     margin: 0.5em;
     padding: 3em;
     background-color: #f0f0f0;
-    font-family: "Benton Sans",Helvetica,Arial,sans-serif;
     position: relative;
     box-sizing: border-box;
 }
 
 h4 {
     margin-top: 0;
-    /* padding-left: 5px; */
 }
 
 .photo {
@@ -114,12 +112,7 @@ h4 {
     margin-left: 1em;
 }
 
-/* .vitals {
-    padding-left: 5px;
-} */
-
 ul {
-    /* padding-left: 5px; */
     padding-left: 0;
 }
 
@@ -147,10 +140,6 @@ li {
     font-size: 1em;
     cursor: pointer;
 }
-
-/* .narrative {
-    padding: 1em 1em 1em 5px;
-} */
 
 .narrative p {
     line-height: 1.6em;
