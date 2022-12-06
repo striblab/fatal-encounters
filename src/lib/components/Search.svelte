@@ -7,7 +7,7 @@
 
     let miniSearch = new MiniSearch({
         idField: "index",
-        fields: ["FirstName", "MiddleName", "LastName", "InjuryCity"],
+        fields: ["FirstName", "LastName", "InjuryCity"],
         storeFields: [
             "FirstName", 
             "MiddleName",
@@ -24,14 +24,17 @@
             "StribNarrative",
             "expanded",
             "Region",
-            "index"
+            "index",
+            "Latitude",
+            "Longitude"
         ]
     })
 
     miniSearch.addAll($allData);
 
     const searchRaces = () => {
-        $filteredData = miniSearch.search(searchTerm)
+        $filteredData = miniSearch.search(searchTerm);
+        $filteredData = $filteredData;
         if (searchTerm == "") {
             $filteredData = $allData;
         }

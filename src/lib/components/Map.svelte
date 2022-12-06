@@ -206,7 +206,11 @@
             bounds.extend([d.Longitude, d.Latitude])
         })
         map.getSource("points").setData(data)
-        map.fitBounds(bounds, {padding: 40});
+        if ($filteredData.length >0) {
+            // Only attempt fitbounds if we actually have data
+            map.fitBounds(bounds, {padding: 40});
+        }
+        
     }
 
     $: if (map && markersLoaded && $filteredData) {

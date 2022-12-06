@@ -70,7 +70,7 @@
     }
     
     section {
-        margin: 2rem 0 2rem;
+        margin: 1rem 0 1rem;
     }
 
     .flex-container-c {
