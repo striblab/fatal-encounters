@@ -21,7 +21,7 @@ fi
 
 if [ "$DEPLOY_PATH" != "" ]; then
   if [ -d "dist/" ]; then
-    aws s3 sync dist/ $DEPLOY_PATH --profile default --exclude ".DS_Store"
+    aws s3 sync dist/ $DEPLOY_PATH --profile default --exclude ".DS_Store" --exclude "strib-webfonts/"
     aws s3 cp dist/assets/index.*.js.gz $DEPLOY_PATH --profile default --content-encoding=gzip --content-type=application/javascript
     aws s3 cp dist/assets/index.*.css.gz $DEPLOY_PATH --profile default --content-encoding=gzip --content-type=text/css
   else
