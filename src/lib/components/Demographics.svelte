@@ -1,6 +1,6 @@
 <script>
     import { allData } from "../getData"
-    import { toTitleCase } from "../helpers";
+    import { toTitleCase, raceOrder, regionOrder } from "../helpers";
 
     const totalRecords = $allData.length
 
@@ -9,8 +9,9 @@
 
     //Get values for all relevant categories
     let races = Array.from(new Set($allData.map((d)=> d.Race)));
-    races = races.filter((d)=> d != "PENDING" && d != "MULTI");
+    races = races.filter((d)=> d != "PENDING" && d != "MULTI" && d);
     races.push("OTHER");
+    races.sort((a,b) => raceOrder.indexOf(a) - raceOrder.indexOf(b))
     let regions = Array.from(new Set($allData.map((d)=> d.Region)));
     regions = regions.filter((d)=> d != "PENDING");
 
@@ -35,6 +36,7 @@
     regions.forEach((r)=>{
         regionCounts[r] = $allData.filter((d) => d.Region == r).length
     })
+    regions.sort((a,b) => regionOrder.indexOf(a) - regionOrder.indexOf(b))
 
     //From 2020 Census
     const mn_race_stats = {

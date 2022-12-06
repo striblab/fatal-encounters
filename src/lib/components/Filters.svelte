@@ -1,5 +1,5 @@
 <script>
-    import { toTitleCase } from "../helpers";
+    import { toTitleCase, raceOrder, regionOrder } from "../helpers";
     import { allData, filteredData } from "../getData";
     let filtering = false;
 
@@ -7,17 +7,19 @@
 
     let raceFilters = {};
     let races = Array.from(new Set($allData.map((d)=> d.Race)));
-    races = races.filter((d)=> d != "PENDING");
+    races = races.filter((d)=> d != "PENDING" && d);
+    races.sort((a,b) => raceOrder.indexOf(a) - raceOrder.indexOf(b));
     races.forEach(r => raceFilters[r] = false);
 
     let sexFilters = {};
     let sexes = Array.from(new Set($allData.map((d)=> d.Gender)));
-    sexes = sexes.filter((d)=> d != "PENDING");
+    sexes = sexes.filter((d)=> d != "PENDING" && d);
     sexes.forEach(r => sexFilters[r] = false);
 
     let regionFilters = {};
     let regions = Array.from(new Set($allData.map((d)=> d.Region)));
-    regions = regions.filter((d)=> d != "PENDING");
+    regions = regions.filter((d)=> d != "PENDING" && d);
+    regions.sort((a,b) => regionOrder.indexOf(a) - regionOrder.indexOf(b));
     regions.forEach(r => regionFilters[r] = false);
 
     const filterData = () => {

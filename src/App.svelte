@@ -25,7 +25,7 @@
         <section class="overall-count">
             <div>Since 2000, at least</div> 
                 <div class="big-number">{$allData.length}</div> 
-            <div>people have been killed after encounters law enforcement in Minnesota.</div>
+            <div>people have been killed after encounters with law enforcement in Minnesota.</div>
         </section>
     </div>
     <div class="flex-container-r" style="justify-content: center;">
