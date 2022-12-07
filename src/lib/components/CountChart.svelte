@@ -119,6 +119,10 @@
         border-top: 1px solid #222;
     }
 
+    .axis .block {
+        align-self: flex-start;
+    }
+
     .bars-container {
         display: flex;
         align-items: center;
