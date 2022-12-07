@@ -1,6 +1,6 @@
 <script>
     import { allData } from "../getData"
-    import { toTitleCase, raceOrder, regionOrder } from "../helpers";
+    import { toTitleCase, raceOrder, regionOrder, translations } from "../helpers";
 
     const totalRecords = $allData.length
 
@@ -93,7 +93,7 @@
         <h4>Region</h4>
     {#each regions as region}
         <div class="stat-chart">
-            <h5>{region}</h5>
+            <h5>{translations.get(region) ? translations.get(region) : toTitleCase(region)}</h5>
             <div class="bar-group">
                 <div class="stat-bar demo" style="width:{Math.round(regionCounts[region]/totalRecords*100)*widthBasis}px;"></div>
                 {Math.round(regionCounts[region]/totalRecords*100)}% 

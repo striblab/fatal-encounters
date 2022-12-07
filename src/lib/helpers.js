@@ -10,3 +10,14 @@ export function toTitleCase(str) {
 // Preferred sort order for different categories. Used by filters and demographics charts
 export const raceOrder = ["WHITE", "BLACK", "HISPANIC", "ASIAN", "AMERICAN INDIAN", "MULTI", "OTHER"]
 export const regionOrder = ["Minneapolis", "St. Paul", "Metro", "Outstate"]
+
+// Create a map of replacements for words in the data that we want displayed differently on the app
+const getTranslations = () => {
+    let t = new Map();
+    t.set("Metro", "Metro suburbs");
+    t.set("Outstate", "Greater Minnesota");
+    console.log(t);
+    return t;
+}
+
+export const translations = getTranslations();

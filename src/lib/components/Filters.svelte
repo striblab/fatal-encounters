@@ -1,5 +1,5 @@
 <script>
-    import { toTitleCase, raceOrder, regionOrder } from "../helpers";
+    import { toTitleCase, raceOrder, regionOrder, translations } from "../helpers";
     import { allData, filteredData, toggleClearFilters } from "../getData";
     let filtering = false;
 
@@ -109,7 +109,7 @@
                 bind:checked={regionFilters[region]} 
                 on:change={filterData}
             />
-            <label for="region-{region}" class="region-filter">{toTitleCase(region)}</label>
+            <label for="region-{region}" class="region-filter">{translations.get(region) ? translations.get(region) : toTitleCase(region)}</label>
         </div>
     {/each}
     {#if filtering}
