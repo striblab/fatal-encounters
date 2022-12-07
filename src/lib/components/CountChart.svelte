@@ -15,6 +15,11 @@
     });
 
     const scrollToRecord = (index) => {
+
+        //Expand record
+        $filteredData.forEach((d) => d.index == index ? d.expanded = true : null);
+        $filteredData = $filteredData;
+
         const el = document.getElementById("record"+index);
         el.scrollIntoView({
             behavior: "smooth"

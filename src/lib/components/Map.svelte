@@ -175,6 +175,11 @@
 
         // Scroll to record on click
         map.on("click", "activeMarkers", (event) => {
+
+            //Expand record
+            $filteredData.forEach((d) => d.index == event.features[0].properties.id.slice(6) ? d.expanded = true : null);
+            $filteredData = $filteredData;
+
             const el = document.getElementById(event.features[0].properties.id)
             el.scrollIntoView({"behavior":"smooth"})
         });
