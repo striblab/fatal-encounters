@@ -107,7 +107,7 @@
     }
 
     .ylabel:nth-last-child(1) {
-        border-right: 1px solid #222;
+        border-right: 1px solid #888;
     }
 
     .year {
@@ -117,7 +117,7 @@
     }
 
     .bars-container.axis {
-        border-top: 1px solid #222;
+        border-top: 1px solid #888;
     }
 
     .axis .block {
@@ -146,13 +146,13 @@
         background-color: transparent;
         text-align: right;
         font-size: .8rem;
-        font-weight: 700;
         padding-right: 4px;
         padding-top: 2px;
+        color: #888;
     }
 
     .empty:nth-child(5n) {
-        border-right: 1px solid #222;
+        border-right: 1px solid #888;
     }
 
     .block:hover {
