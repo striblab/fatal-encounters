@@ -29,7 +29,7 @@
             maxWidth: 80,
             unit: 'imperial'
         });
-        map.addControl(scale)
+        map.addControl(scale, "bottom-right");
 
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             map.dragPan.disable();

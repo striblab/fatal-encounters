@@ -102,7 +102,7 @@
     .ylabel {
         display:inline-block;
         width:40px;
-        font-size:15px;
+        font-size:0.9rem;
         color:#888;
     }
 
@@ -111,8 +111,9 @@
     }
 
     .year {
-        height:1.2rem;
+        height: 1.2rem;
         display:flex;
+        align-items: center;
     }
 
     .bars-container.axis {
@@ -129,8 +130,8 @@
     }
 
     .block {
-        width:25px;
-        height:11px;
+        width:1.6rem;
+        height:.85rem;
         margin-right:2px;
         background-color:#cccccc;
         display:inline-block;
