@@ -1,5 +1,5 @@
 <script>
-    import { allData, filteredData } from "../getData";
+    import { allData, filteredData, toggleClearFilters } from "../getData";
 
     import MiniSearch from "minisearch";
 
@@ -38,6 +38,11 @@
             $filteredData = $allData;
         }
     }
+
+    $: if (searchTerm) {
+        $toggleClearFilters = true
+    }
+
 </script>
 
 <div id="searchContainer">

@@ -32,3 +32,5 @@ function getData() {
 
     return {isLoading, error, allData, filteredData}
 }
+
+export let toggleClearFilters = writable(false)

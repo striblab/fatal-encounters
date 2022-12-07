@@ -1,6 +1,6 @@
 <script>
     import { toTitleCase, raceOrder, regionOrder } from "../helpers";
-    import { allData, filteredData } from "../getData";
+    import { allData, filteredData, toggleClearFilters } from "../getData";
     let filtering = false;
 
 
@@ -56,6 +56,11 @@
     }
 
     $: filtering = (Object.values(raceFilters).concat(Object.values(sexFilters)).concat(Object.values(regionFilters))).includes(true)
+    $: if ($toggleClearFilters) {
+        clearFilters();
+        filtering = false;
+        $toggleClearFilters = false;
+    }
 
 </script>
 
