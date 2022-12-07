@@ -16,7 +16,6 @@ const getTranslations = () => {
     let t = new Map();
     t.set("Metro", "Metro suburbs");
     t.set("Outstate", "Greater Minnesota");
-    console.log(t);
     return t;
 }
 

@@ -29,14 +29,14 @@ if [ "$DEPLOY_PATH" != "" ]; then
       
     aws s3 sync ./dist/assets/ "$DEPLOY_PATH/assets" \
       --exclude "*" \
-      --include "index.*.js.gz" \
+      --include "*.js.gz" \
       --profile default \
       --content-encoding=gzip \
       --content-type=application/javascript
 
     aws s3 sync ./dist/assets/ "$DEPLOY_PATH/assets" \
       --exclude "*" \
-      --include "index.*.css.gz" \
+      --include "*.css.gz" \
       --profile default \
       --content-encoding=gzip \
       --content-type=text/css
