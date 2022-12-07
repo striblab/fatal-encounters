@@ -29,12 +29,12 @@
         </section>
         <section class="narrative text-wrapper">
             <p>
-                Almost all of them were men. Most of those killed were white, but Black people were
-                killed at a disproportionately high rate compared to their share of the Minnesota
-                population. The deaths occurred all over Minnesota, but there were higher rates
-                of deaths in Minneapolis and St. Paul than the cities&rsquo; respective population
-                sizes would suggest. Some of those killed were armed, some were unarmed. Many were
-                experiencing mental health crises. 
+                Almost all of them were men. Most of those killed were white, but Black and American
+                Indian people were killed at a disproportionately high rate compared to their share 
+                of the Minnesota population. The deaths occurred all over Minnesota, but there were 
+                higher rates of deaths in Minneapolis and St. Paul than the cities&rsquo; respective 
+                population sizes would suggest. Some of those killed were armed, some were unarmed. 
+                Many were experiencing mental health crises. 
             </p>
         </section>
     </div>
