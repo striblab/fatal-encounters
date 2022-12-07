@@ -26,12 +26,14 @@ if [ "$DEPLOY_PATH" != "" ]; then
       --exclude ".DS_Store" \
       --exclude "strib-webfonts/*" \
       --exclude "assets/*"
+      
     aws s3 sync ./dist/assets/ "$DEPLOY_PATH/assets" \
       --exclude "*" \
       --include "index.*.js.gz" \
       --profile default \
       --content-encoding=gzip \
       --content-type=application/javascript
+
     aws s3 sync ./dist/assets/ "$DEPLOY_PATH/assets" \
       --exclude "*" \
       --include "index.*.css.gz" \
