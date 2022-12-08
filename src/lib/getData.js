@@ -16,7 +16,11 @@ function getData() {
             const response = await fetch("https://static.startribune.com/news/projects/all/strib-fatal-encounters-db/data/data.json");
             const {mn_shootings: deaths} = await response.json();
             // @ts-ignore
-            let sorted_data = deaths.sort((a,b) => new Date(b.InjuryDate) - new Date(a.InjuryDate))
+            let sorted_data = deaths.sort((a,b) => {
+                let dateA = a.InjuryDate ? a.InjuryDate : a.DeathDate
+                let dateB = b.InjuryDate ? b.InjuryDate : b.DeathDate
+                return new Date(dateA) > new Date(dateB) ? -1 :1
+            })
             deaths.forEach(d => d["expanded"] = false)
             allData.set(sorted_data);
             filteredData.set(sorted_data);
