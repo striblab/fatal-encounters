@@ -23,14 +23,18 @@
 
 <section class="card" class:expanded={record.expanded} id="record{record.index}">
 
-    <h4>{record.FirstName} {record.LastName} {record.Suffix}</h4>
+    <h4>
+        {record.FirstName ? record.FirstName : ""} 
+        {record.LastName ? record.LastName : ""} 
+        {record.Suffix ? record.Suffix : ""}
+    </h4>
     <section class="flex-container">
         <section>
             <section class="vitals">
                 {#if record.AgeYears && record.AgeYears != "PENDING"}
                     {record.AgeYears} year-old
                 {/if}
-                {#if record.Race != "PENDING"}
+                {#if record.Race != "PENDING" && record.Race}
                     {(record.Race == "WHITE" && record.AgeYears && record.AgeYears != "PENDING" ) ? 
                     record.Race.toLowerCase() : 
                     record.Race == "MULTI" ?
@@ -47,13 +51,18 @@
             </section>
             <section class="incident-details">
                 <ul>
+                    {#if record.InjuryCity}
                     <li>Killed in {toTitleCase(record.InjuryCity)} 
                         {#if record.InjuryDate}
                         on {apdate(new Date(record.InjuryDate))}
                         {/if}
                     </li>
+                    {/if}
+                    {#if record.Agency}
                     <li>Agency involved: {toTitleCase(record.Agency).replace("Pd","Police Department").replace("So", "Sheriff's Office")}</li>
-                    {#if record.WeaponCategory != "PENDING" && 
+                    {/if}
+                    {#if record.WeaponCategory &&
+                         record.WeaponCategory != "PENDING" && 
                          record.WeaponCategory != "UNKNOWN" && 
                          record.WeaponCategory != "OTHER" &&
                          record.WeaponCategory != "UNDETERMINED"}

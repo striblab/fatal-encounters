@@ -13,8 +13,9 @@ function getData() {
         isLoading.set(true);
 
         try {
-            const response = await fetch("https://googlescript.startribune.com/?macro=AKfycbw_cqdXZADky_zHS3pi9aBL2S3-514vlxJkcnv5TJ1z9sxCqPY&id=1T-Du1geFfuspEYGF_U0531mLTJ0ehbA5YbaFCxgmkRA&sheet=mn_shootings");
+            const response = await fetch("https://static.startribune.com/news/projects/all/strib-fatal-encounters-db/data/data.json");
             const {mn_shootings: deaths} = await response.json();
+            console.log(deaths);
             // @ts-ignore
             let sorted_data = deaths.sort((a,b) => new Date(b.InjuryDate) - new Date(a.InjuryDate))
             deaths.forEach(d => d["expanded"] = false)
