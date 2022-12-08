@@ -5,3 +5,9 @@ package-lock.json
 yarn.lock
 dist/
 strib-webfonts/
+.venv/
+pyenv.cfg
+.project
+.env
+.vscode/
+data-processing/*.zip
