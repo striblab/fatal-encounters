@@ -39,8 +39,9 @@
             map.scrollZoom.disable();
         } else {
             map.getCanvas().style.cursor = 'pointer';
-            map.addControl(new mapboxgl.NavigationControl({ showCompass: false }),'top-right');
         }
+
+        map.addControl(new mapboxgl.NavigationControl({ showCompass: false }),'top-right');
         
         const stateZoom = new HomeReset(map);
         const metroZoom = new MetroReset(map);

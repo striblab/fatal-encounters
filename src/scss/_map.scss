@@ -711,3 +711,8 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
 .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib {
     display:none !important;
   }
+
+//Prevent blue icon on mobile safari
+.mapboxgl-ctrl-icon i {
+	color: #000000;
+}
