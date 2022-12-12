@@ -143,6 +143,12 @@
         box-sizing: border-box;
     }
 
+    @media only screen and (max-width: 550px) {
+        .block {
+            width: 1.2rem;
+        }
+    }
+
     .active {
         background-color: #b9625f;
     }
