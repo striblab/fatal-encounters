@@ -23,7 +23,8 @@ def lambda_handler(event, context):
 
     rows = table.all()
     for r in rows:
-        data.append(r["fields"])
+        if r["fields"].get("index", "") != "":
+            data.append(r["fields"])
 
     payload = {"mn_shootings": data}
 
@@ -51,5 +52,8 @@ def lambda_handler(event, context):
         "headers": {
             "Content-Type": "application/json"
         },
-        "body": json.dumps('Successfully pushed update to Fatal Encounters data.')
+        "body": json.dumps({
+            'result': 'Successfully pushed update to Fatal Encounters data.',
+            'data': payload
+        })
     }
