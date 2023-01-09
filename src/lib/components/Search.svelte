@@ -114,7 +114,7 @@
         width: 100%;
         font-size:1rem;
         line-height: 1.6rem;
-        padding: .25rem;
+        padding: .25rem .5rem;
     }
 
     #delete {

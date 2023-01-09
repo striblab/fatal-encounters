@@ -92,7 +92,7 @@
         {/if}
     </section>
     {/if}
-    <button class="read-more" on:click={toggleNarrative}>{#if !record.expanded}Read more...{:else}Show less &uArr;{/if}</button>
+    <button class="read-more" on:click={toggleNarrative}>{#if !record.expanded}Read more{:else}Show less &uArr;{/if}</button>
     <a 
         class="back-to-top-link"
         href="#count-chart" 
@@ -106,13 +106,15 @@
     flex-basis: 575px;
     margin: 0.5rem;
     padding: 3rem;
-    background-color: #f0f0f0;
+    background-color: #f3f4f1;
     position: relative;
     box-sizing: border-box;
+    border-radius:1em;
 }
 
 h4 {
     margin-top: 0;
+    font-size:1.1rem;
 }
 
 .photo {
@@ -127,7 +129,7 @@ ul {
 
 li {
     list-style-type: none;
-    margin-bottom: .75rem;
+    margin-bottom: .55rem;
     line-height: 1.4rem;
 }
 
@@ -136,6 +138,8 @@ li {
     justify-content: space-between;
     align-items: flex-start;
 }
+
+
 
 .read-more {
     background-color: none;
