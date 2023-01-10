@@ -78,7 +78,7 @@
         </section>
         <img 
         class="photo"
-        src="img/{record.photo2}" 
+        src="https://static.startribune.com/news/projects/all/strib-fatal-encounters-db/img/{record.photo2}" 
         alt="{record.photo2.includes('placeholder') ? 
             'no photo available' : 
             `photo of ${record.FirstName} ${record.LastName}`}" 

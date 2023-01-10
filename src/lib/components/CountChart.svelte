@@ -44,7 +44,7 @@
             <div class="bars-container">
             {#each records as record}
                 <span 
-                    class="block" 
+                    class="chart-block" 
                     class:active={activeIndices.indexOf(record.index)!= -1}
                     use:tooltip={{ 
                         text: record.FirstName + " " + record.LastName, 
@@ -61,20 +61,20 @@
         <div class="year">
             <span class="ylabel"></span>
             <div class="bars-container axis">
-                <span class="block empty"></span>
-                <span class="block empty"></span>
-                <span class="block empty"></span>
-                <span class="block empty"></span>
-                <span class="block empty">5</span>
-                <span class="block empty"></span>
-                <span class="block empty"></span>
-                <span class="block empty"></span>
-                <span class="block empty"></span>
-                <span class="block empty">10</span>
-                <span class="block empty"></span>
-                <span class="block empty"></span>
-                <span class="block empty"></span>
-                <span class="block empty"></span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty">5</span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty">10</span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty"></span>
+                <span class="chart-block empty"></span>
             </div>
 
         </div>
@@ -125,7 +125,7 @@
         border-top: 1px solid #888;
     }
 
-    .axis .block {
+    .axis .chart-block {
         align-self: flex-start;
     }
 
@@ -134,7 +134,7 @@
         align-items: center;
     }
 
-    .block {
+    .chart-block {
         width:1.6rem;
         height:.85rem;
         margin-right:2px;
@@ -144,7 +144,7 @@
     }
 
     @media only screen and (max-width: 550px) {
-        .block {
+        .chart-block {
             width: 1.2rem;
         }
     }
@@ -166,7 +166,7 @@
         border-right: 1px solid #888;
     }
 
-    .block:hover {
+    .chart-block:hover {
         cursor:pointer;
         background-color:#e1b79c;
     }
