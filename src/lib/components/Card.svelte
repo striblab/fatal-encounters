@@ -21,15 +21,15 @@
 
 </script>
 
-<section class="card" class:expanded={record.expanded} id="record{record.index}">
+<article class="card" class:expanded={record.expanded} id="record{record.index}">
 
     <h4>
         {record.FirstName ? record.FirstName : ""} 
         {record.LastName ? record.LastName : ""} 
         {record.Suffix ? record.Suffix : ""}
     </h4>
-    <section class="flex-container">
-        <section>
+    <div class="flex-container">
+        <div>
             <section class="vitals">
                 {#if record.AgeYears && record.AgeYears != "PENDING"}
                     {record.AgeYears} year-old
@@ -52,7 +52,7 @@
             <section class="incident-details">
                 <ul>
                     {#if record.InjuryCity}
-                    <li>Killed in {toTitleCase(record.InjuryCity)} 
+                    <li>Died in {toTitleCase(record.InjuryCity)} 
                         {#if record.InjuryDate}
                         on {apdate(new Date(record.InjuryDate))}
                         {/if}
@@ -72,10 +72,9 @@
                             <li>Authorities said {record.LastName} was armed with a {record.WeaponCategory.toLowerCase()}.</li>
                         {/if}
                     {/if}
-                </ul>
-                
+                </ul>        
             </section>
-        </section>
+        </div>
         <img 
         class="photo"
         src="https://static.startribune.com/news/projects/all/strib-fatal-encounters-db/img/{record.photo2}" 
@@ -83,7 +82,7 @@
             'no photo available' : 
             `photo of ${record.FirstName} ${record.LastName}`}" 
         />
-    </section>
+    </div>
     {#if record.expanded}
     <section class="narrative" transition:slide>
         <p>{record.StribNarrative}</p>
@@ -98,7 +97,7 @@
         href="#count-chart" 
         on:click|preventDefault={scrollToTop}
     >Back to top &uArr;</a>
-</section>
+</article>
 
 <style>
 
@@ -110,6 +109,18 @@
     position: relative;
     box-sizing: border-box;
     border-radius:1em;
+}
+
+@media screen and (max-width: 650px) {
+    .card {
+        padding: 1rem;
+        margin: 0.2rem;
+    }
+
+    .card img {
+        max-width: 125px;
+    }
+
 }
 
 h4 {
@@ -125,6 +136,7 @@ h4 {
 
 ul {
     padding-left: 0;
+    margin: 0;
 }
 
 li {
@@ -139,7 +151,9 @@ li {
     align-items: flex-start;
 }
 
-
+.flex-container div section {
+    margin-bottom: 1rem;
+}
 
 .read-more {
     background-color: none;

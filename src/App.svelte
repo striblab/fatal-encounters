@@ -66,26 +66,13 @@
 {/if}
 
 <section id="credits" class="text-wrapper">
-    <p>
-        <strong>Methodology:</strong> The Star Tribune built this database by culling 
-        information from death certificates, news stories, crowdsourcing sites, state and 
-        local police records, FBI supplementary homicide reports and 
-        arrest-related death reports and medical examiner data. 
-    </p>
-
-    <p>
-        Government agencies have not adequately tracked these deaths. Even death certificates, 
-        the official record of what caused a person to die, often lack any mention of police involvement.
-        The deaths listed here include those deemed homicides as well as others ruled suicides, 
-        accidental or deaths by natural causes. In most cases the deceased was shot, but some 
-        died after being hit with a Taser, restrained, pepper-sprayed or after wrestling with officers.
-    </p>
 
     <p>
         The following Star Tribune staff members contributed to this project: 
         Jeff Hargarten, Jennifer Bjorhus, MaryJo Webster, Kelly Smith, Liz Sawyer, 
         Susan Hilliard and Tom Nehil.
     </p>
+
 </section>
 
 
@@ -143,6 +130,7 @@
     #credits {
         border-top: 1px solid #cccccc;
         margin-top: 6rem;
+        padding-top: 2rem;
     }
 
 </style>
