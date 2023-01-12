@@ -127,12 +127,12 @@
         {/if}
     </section>
     {/if}
-    <button class="read-more" on:click={toggleNarrative}>{#if !record.expanded}Read more{:else}Show less &uArr;{/if}</button>
+    <button class="read-more" on:click={toggleNarrative}>{#if !record.expanded}Read more{:else}Show less <i class="strib-icon strib-arrow-value-up"></i>{/if}</button>
     <a 
         class="back-to-top-link"
         href="#count-chart" 
         on:click|preventDefault={scrollToTop}
-    >Back to top &uArr;</a>
+    >Back to top <i class="strib-icon strib-arrow-value-up"></i></a>
 </article>
 
 <style>
