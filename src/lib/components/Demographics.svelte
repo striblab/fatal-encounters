@@ -50,9 +50,9 @@
 
     //From 2020 Census
     const mn_regions_stats = {
-        "Outstate": .42,
+        "Outstate": .45,
         "Minneapolis": .08,
-        "Metro": .45,
+        "Metro": .42,
         "St. Paul": .05
     }
 
