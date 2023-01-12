@@ -19,6 +19,50 @@
         })
     }
 
+    const formatVitalsString = (record) => {
+        let s = ""
+
+        // Add age if we have an age
+        if (record.AgeYears && record.AgeYears !== "PENDING") {
+            s += record.AgeYears + "-year-old "
+        }
+
+        // Add race, capitalized correctly depending if there's an 
+        // age or not and based on style rules.
+        if (record.Race && record.Race !== "PENDING") {
+            let race = toTitleCase(record.Race)
+            if (race === "White") {race = "white"}
+            if (race === "Multi") {race = "multiracial"}
+            if (s) {
+                s += " " + race + " "
+            } else {
+                s += toTitleCase(race)
+            }
+        }
+
+        // Translate sex to man, woman or teen
+        if (record.Gender !== "PENDING") {
+            let gender = ""
+            if (record.Gender === "MALE") {
+                gender = "man"
+            }
+            if (record.Gender === "FEMALE") {
+                gender = "woman"
+            }
+            if (record.AgeYears && parseInt(record.AgeYears) < 18) {
+                gender = "teen"
+            }
+
+            if (s) {
+                s += gender
+            } else {
+                s += toTitleCase(gender)
+            }
+        }
+
+        return s
+    }
+
 </script>
 
 <article class="card" class:expanded={record.expanded} id="record{record.index}">
@@ -31,35 +75,27 @@
     <div class="flex-container">
         <div>
             <section class="vitals">
-                {#if record.AgeYears && record.AgeYears != "PENDING"}
-                    {record.AgeYears} year-old
-                {/if}
-                {#if record.Race != "PENDING" && record.Race}
-                    {(record.Race == "WHITE" && record.AgeYears && record.AgeYears != "PENDING" ) ? 
-                    record.Race.toLowerCase() : 
-                    record.Race == "MULTI" ?
-                    "multiracial" :
-                    toTitleCase(record.Race)}
-                {/if}
-                {#if record.Gender != "PENDING"}
-                    {((record.Race && record.Race != "PENDING") ||
-                        (record.AgeYears && record.AgeYears!= "PENDING") ) ? 
-                            record.Gender.toLowerCase() :
-                            toTitleCase(record.Gender)
-                    }
-                {/if}
+                {formatVitalsString(record)}
             </section>
             <section class="incident-details">
                 <ul>
                     {#if record.InjuryCity}
-                    <li>Died in {toTitleCase(record.InjuryCity)} 
+                    <li>Died in {toTitleCase(record.InjuryCity).replace(/St\s/g, "St. ")} 
                         {#if record.InjuryDate}
                         on {apdate(new Date(record.InjuryDate))}
                         {/if}
                     </li>
                     {/if}
                     {#if record.Agency}
-                    <li>Agency involved: {toTitleCase(record.Agency).replace("Pd","Police Department").replace("So", "Sheriff's Office")}</li>
+                    <li>
+                        Agenc{record.Agency.includes(",") ? "ies" : "y"} involved: 
+                        {record.Agency.includes("MULTIPLE AGENCIES") ?
+                            record.Agency.charAt(0) + record.Agency.slice(1).toLowerCase() :
+                            toTitleCase(record.Agency)
+                                .replace(/Pd/g, "Police Department")
+                                .replace(/So([$\s,])?/g, "Sheriff's Office$1")
+                                .replace(/St\s/g, "St. ")}
+                    </li>
                     {/if}
                     {#if record.WeaponCategory &&
                          record.WeaponCategory != "PENDING" && 

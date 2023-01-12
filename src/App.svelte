@@ -21,7 +21,7 @@
             <div>Since 2000, at least</div>
             <div class="big-number">{$allData.length}</div>
             <div class="lower-big-number-block">
-                people have been killed after encounters with law enforcement in
+                people have been killed in encounters with law enforcement in
                 Minnesota.
             </div>
         </section>
@@ -70,7 +70,7 @@
     <p>
         The following Star Tribune staff members contributed to this project: 
         Jeff Hargarten, Jennifer Bjorhus, MaryJo Webster, Kelly Smith, Liz Sawyer, 
-        Susan Hilliard and Tom Nehil.
+        Susan Hilliard, John Wareham and Tom Nehil.
     </p>
 
 </section>
