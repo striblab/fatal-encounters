@@ -17,9 +17,7 @@ function getData() {
             const {mn_shootings: deaths} = await response.json();
             // @ts-ignore
             let sorted_data = deaths.sort((a,b) => {
-                let dateA = a.InjuryDate ? a.InjuryDate : a.DeathDate
-                let dateB = b.InjuryDate ? b.InjuryDate : b.DeathDate
-                return new Date(dateA) > new Date(dateB) ? -1 :1
+                return new Date(a.DeathDate) > new Date(b.DeathDate) ? -1 :1
             })
             deaths.forEach(d => d["expanded"] = false)
             allData.set(sorted_data);
