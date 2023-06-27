@@ -8,7 +8,7 @@ zip -g ../lambda-deploy.zip lambda_function.py
 cd ..
 
 aws lambda update-function-code \
-    --function-name updateFatalEncounters \
+    --function-name update-fatal-encounters \
     --zip-file fileb://lambda-deploy.zip \
     --profile newsroom-aws \
-    --region us-west-1
+    --region us-east-2
