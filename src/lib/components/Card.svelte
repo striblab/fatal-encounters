@@ -2,6 +2,7 @@
     import { toTitleCase } from "../helpers";
     import { apdate } from "journalize";
     import { slide } from "svelte/transition"
+  import { construct_svelte_component } from "svelte/internal";
     export let record;
 
     function toggleNarrative(){
@@ -63,6 +64,11 @@
         return s
     }
 
+    const formatDate = (date) => {
+        let d = new Date(date + "T00:00:00");
+        return apdate(d);
+    }
+
 </script>
 
 <article class="card" class:expanded={record.expanded} id="record{record.index}">
@@ -81,8 +87,8 @@
                 <ul>
                     {#if record.InjuryCity}
                     <li>Died in {toTitleCase(record.InjuryCity).replace(/St\s/g, "St. ")} 
-                        {#if record.InjuryDate}
-                        on {apdate(new Date(record.InjuryDate))}
+                        {#if record.DeathDate}
+                        on {formatDate(record.DeathDate)}
                         {/if}
                     </li>
                     {/if}

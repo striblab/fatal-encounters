@@ -22,7 +22,7 @@
             "Gender",
             "Agency",
             "WeaponCategory",
-            "InjuryDate",
+            "DeathDate",
             "photo2",
             "StribNarrative",
             "expanded",
