@@ -16,7 +16,6 @@
     "deploy-production": "./strib-deploy.sh --environment production"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.2.1",
     "d3": "^7.6.1",
     "journalize": "^2.2.1",
     "mapbox-gl": "^2.11.0",

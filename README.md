@@ -68,6 +68,16 @@ npm run dev
 Navigate to [localhost:8080](http://localhost:5173). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
 
 
-## Deploying to the web
+## Deploying
 
-Better deploy docs TK!
+Deployment is currently handled by a shell script (`strib-deploy.sh`) that has two dependencies:
+
+[AWS CLI](https://aws.amazon.com/cli/) with properly configured credentials for the static.startribune.com bucket using the 'default' profile.
+
+[jq](https://stedolan.github.io/jq/), which can be installed on a Mac via [Homebrew](https://brew.sh/):
+
+```
+brew install jq
+```
+
+To deploy to staging, run `npm run deploy-staging`. For production, run `npm run deploy-production`. This will upload to a typical path using your project's name, which is read from `package.json`. 
