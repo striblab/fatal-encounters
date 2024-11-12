@@ -10,5 +10,12 @@ export default defineConfig({
     renderBuiltUrl(filename, type) {
       return `${filename}.gz` // To use gzipped assets in the built index.html
     }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
+    }
   }
 })
