@@ -9,11 +9,10 @@ This code uses `pipenv` to manage dependencies. For the deploy script to work co
 you should install using `PIPENV_VENV_IN_PROJECT=1`, i.e.:
 
 ```bash
-cd updateFatalEncounters
 PIPENV_VENV_IN_PROJECT=1 pipenv install 
 ```
 
-The code for the function is found in `updateFatalEncounters/lambda_function.py`. You
+The code for the function is found in `lambda_function.py`. You
 also need a `.env` file located in the same directory as the Pipfile with the following
 keys:
 

@@ -1,9 +1,8 @@
 import json
 import os
-from pyairtable import Table
+from pyairtable import Api
 import boto3
 from botocore.exceptions import ClientError
-
 
 api_key = os.environ['AIRTABLE_API_KEY']
 base_id = os.environ['AIRTABLE_BASE_ID']
@@ -11,10 +10,11 @@ table_id = os.environ['AIRTABLE_TABLE_ID']
 access_key_id = os.environ["aws_access_key_id"]
 access_key = os.environ["aws_secret_access_key"]
 
+API = Api(api_key)
+
 def lambda_handler(event, context):
 
-    table = Table(
-        api_key,
+    table = API.table(
         base_id,
         table_id
     )
@@ -33,7 +33,7 @@ def lambda_handler(event, context):
         aws_access_key_id=access_key_id,
         aws_secret_access_key=access_key
     )
-    s3object = s3.Object("static.startribune.com", 'news/projects/all/strib-fatal-encounters-db/data/data.json')
+    s3object = s3.Object("static.startribune.com", 'news/projects/all/strib-fatal-encounters-db/data/test-data.json')
 
     try:
         s3object.put(
@@ -57,3 +57,6 @@ def lambda_handler(event, context):
             'data': payload
         })
     }
+
+if __name__ == "__main__":
+    print(lambda_handler(None, None))

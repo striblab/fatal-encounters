@@ -10,4 +10,5 @@ pyairtable = "*"
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.12"
+python_specific_version = "3.12.6"
