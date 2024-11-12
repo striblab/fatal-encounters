@@ -33,7 +33,7 @@ def lambda_handler(event, context):
         aws_access_key_id=access_key_id,
         aws_secret_access_key=access_key
     )
-    s3object = s3.Object("static.startribune.com", 'news/projects/all/strib-fatal-encounters-db/data/test-data.json')
+    s3object = s3.Object("static.startribune.com", 'news/projects/all/strib-fatal-encounters-db/data/data.json')
 
     try:
         s3object.put(
