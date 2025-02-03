@@ -13,7 +13,7 @@
     <div class="appinfo">Loading…</div>
 {:else if $error}
     <div class="appinfo">
-        An error occurred while loading the data. {console.log(error)}
+        An error occurred while loading the data.
     </div>
 {:else if $filteredData}
     <div class="flex-container-c">
